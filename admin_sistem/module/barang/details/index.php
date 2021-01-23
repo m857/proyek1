@@ -14,7 +14,7 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 					  	<a href="index.php?page=barang"><button class="btn btn-primary"><i class="fa fa-angle-left"></i> Balik </button></a>
-						<h3>Details Barang</h3>
+						<h3>Details Sepatu</h3>
 						<?php if(isset($_GET['success-stok'])){?>
 						<div class="alert alert-success">
 							<p>Tambah Stok Berhasil !</p>
@@ -40,12 +40,16 @@
 									<td><?php echo $hasil['nama_kategori'];?></td>
 								</tr>
 								<tr>
-									<td>Nama Barang</td>
+									<td>Nama Sepatu</td>
 									<td><?php echo $hasil['nama_barang'];?></td>
 								</tr>
 								<tr>
-									<td>Merk Barang</td>
+									<td>Merk Sepatu</td>
 									<td><?php echo $hasil['merk'];?></td>
+								</tr>
+								<tr>
+									<td>Nama Supplier</td>
+									<td><?php echo $hasil['nama_supplier'];?></td>
 								</tr>
 								<tr>
 									<td>Harga Beli</td>
@@ -62,6 +66,10 @@
 								<tr>
 									<td>Stok</td>
 									<td><?php echo $hasil['stok'];?></td>
+								</tr>
+								<tr>
+									<td>Ukuran Sepatu</td>
+									<td><?php echo $hasil['ukuran'];?></td>
 								</tr>
 								<tr>
 									<td>Tanggal Input</td>

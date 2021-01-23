@@ -18,6 +18,14 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$row -> execute($data);
 		echo '<script>window.location="../../index.php?page=barang&&remove=hapus-data"</script>';
 	}
+	if(!empty($_GET['supplier'])){
+		$id= $_GET['id'];
+		$data[] = $id;
+		$sql = 'DELETE FROM supplier WHERE id_supplier=?';
+		$row = $config -> prepare($sql);
+		$row -> execute($data);
+		echo '<script>window.location="../../index.php?page=supplier&&remove=hapus-data"</script>';
+	}
 	if(!empty($_GET['jual'])){
 		
 		$dataI[] = $_GET['brg'];

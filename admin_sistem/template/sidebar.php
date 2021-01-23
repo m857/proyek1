@@ -23,12 +23,12 @@
                       </a>
                   </li>
 
-                  <!-- <li class="sub-menu">
+                  <li class="sub-menu">
                       <a href="index.php?page=supplier">
                           <i class="fa fa-desktop"></i>
                           <span>Supplier</span>
                       </a>
-                  </li> -->
+                  </li>
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -52,19 +52,20 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="index.php?page=jual">Transaksi Jual</a></li>
-                          <!-- <li><a  href="index.php?page=beli">Laporan Beli</a></li> -->
+                          <li><a  href="index.php?page=beli">Transaksi Beli</a></li>
                       </ul>
                   </li>
-
-
                   <li class="sub-menu">
-                      <a href="index.php?page=laporan">
+                      <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
-                          <span>Laporan Penjualan</span>
+                          <span>Laporan <span style="padding-left:2px;"> <i class="fa fa-angle-down"></i></span></span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="index.php?page=laporan">Laporan Penjualan</a></li>
+                          <li><a  href="index.php?page=laporanbeli">Laporan Pembelian</a></li>
+                      </ul>
                   </li>
-
-                  
+                 
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cog"></i>

@@ -49,11 +49,30 @@
 				$hasil = $row -> fetchAll();
 				return $hasil;
 			}
+			
+			function supplier(){
+				$sql = "SELECT * FROM supplier";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+
+			}
+
 
 			function barang_edit($id){
-				$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori
-						from barang inner join kategori on barang.id_kategori = kategori.id_kategori
+				$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+						from barang inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier
 						where id_barang=?";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute(array($id));
+				$hasil = $row -> fetch();
+				return $hasil;
+			}
+			
+			function supplier_edit($id){
+				$sql = "SELECT * FROM supplier WHERE id_supplier=?";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute(array($id));
 				$hasil = $row -> fetch();

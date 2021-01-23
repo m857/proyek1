@@ -13,17 +13,17 @@
 						<br/>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
-							<p>Tambah Data Berhasil !</p>
+							<p>Tambah Data Kategori Berhasil !</p>
 						</div>
 						<?php }?>
 						<?php if(isset($_GET['success-edit'])){?>
 						<div class="alert alert-success">
-							<p>Update Data Berhasil !</p>
+							<p>Update Data Kategori Berhasil !</p>
 						</div>
 						<?php }?>
 						<?php if(isset($_GET['remove'])){?>
 						<div class="alert alert-danger">
-							<p>Hapus Data Berhasil !</p>
+							<p>Hapus Data Kategori Berhasil !</p>
 						</div>
 						<?php }?>
 						<?php 
@@ -39,7 +39,7 @@
 									<td style="width:15pc;"><input type="text" class="form-control" value="<?= $edit['nama_kategori'];?>" required name="kategori" placeholder="Masukan Kategori Barang Baru">
 										<input type="hidden" name="id" value="<?= $edit['id_kategori'];?>">
 									</td>
-									<td style="padding-left:10px;"><button id="tombol-simpan" class="btn btn-primary"><i class="fa fa-edit"></i> Ubah Data</button></td>
+									<td style="padding-left:10px;"><button id="tombol-simpan" class="btn btn-primary"><i class="fa fa-edit"></i> Ubah Data Kategori</button></td>
 								</tr>
 							</table>
 						</form>
@@ -48,7 +48,7 @@
 							<table>
 								<tr>
 									<td style="width:15pc;"><input type="text" class="form-control" required name="kategori" placeholder="Masukan Kategori Barang Baru"></td>
-									<td style="padding-left:10px;"><button id="tombol-simpan" class="btn btn-primary"><i class="fa fa-plus"></i> Insert Data</button></td>
+									<td style="padding-left:10px;"><button id="tombol-simpan" class="btn btn-primary"><i class="fa fa-plus"></i> Insert Data Kategori</button></td>
 								</tr>
 							</table>
 						</form>
@@ -79,6 +79,9 @@
 									</td>
 								</tr>
 							<?php $no++; }?>
+							<!-- <pre>
+							<?php //print_r($hasil);?>
+							</pre> -->
 							</tbody>
 						</table>
 						<div class="clearfix" style="padding-top:16%;"></div>

@@ -169,11 +169,22 @@
 												</td>
 											</tr>
 											<tr>
-												<td>Nama Barang</td>
+												<td>Nama Sepatu</td>
 												<td><input type="text" placeholder="Nama Barang" required class="form-control" name="nama"></td>
 											</tr>
 											<tr>
-												<td>Merk Barang</td>
+												<td>Nama Supplier</td>
+												<td>
+												<select name="kategori" class="form-control" required>
+													<option value="#">Pilih Supplier</option>
+													<?php  $sup = $lihat -> supplier(); foreach($sup as $isi){ 	?>
+													<option value="<?php echo $isi['id_supplier'];?>"><?php echo $isi['nama_supplier'];?></option>
+													<?php }?>
+												</select>
+												</td>
+											</tr>
+											<tr>
+												<td>Merk Sepatu</td>
 												<td><input type="text" placeholder="Merk Barang" required class="form-control"  name="merk"></td>
 											</tr>
 											<tr>
@@ -189,13 +200,17 @@
 												<td>
 													<select name="satuan" class="form-control" required>
 														<option value="#">Pilih Satuan</option>
-														<option value="PCS">PCS</option>
+														<option value="Pasang">Pasang</option>
 													</select>
 												</td>
 											</tr>
 											<tr>
 												<td>Stok</td>
-												<td><input type="number" required Placeholder="Stok" class="form-control"  name="stok"></td>
+												<td><input type="number" readonly="readonly" value="0" class="form-control"  name="stok"></td>
+											</tr>
+											<tr>
+												<td>Ukuran</td>
+												<td><input type="number" required Placeholder="Ukuran" class="form-control"  name="ukuran"></td>
 											</tr>
 											<tr>
 												<td>Tanggal Input</td>

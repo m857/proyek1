@@ -38,6 +38,22 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$row -> execute($data);
 		echo '<script>window.location="../../index.php?page=barang&success=tambah-data"</script>';
 	}
+	if(!empty($_GET['supplier'])){
+		$namsup = $_POST['namsup'];
+		$alamat = $_POST['alamat'];
+		$no_hp = $_POST['no_hp'];
+		$tgl = $_POST['tgl'];
+		
+		$data[] = $namsup;
+		$data[] = $alamat;
+		$data[] = $no_hp;
+		$data[] = $tgl;
+		$sql = 'INSERT INTO supplier (nama_supplier, alamat, no_hp, tgl_input) 
+			    VALUES (?,?,?,?) ';
+		$row = $config -> prepare($sql);
+		$row -> execute($data);
+		echo '<script>window.location="../../index.php?page=supplier&success=tambah-data"</script>';
+	}
 	if(!empty($_GET['jual'])){
 		$id = $_GET['id'];
 		$kasir =  $_GET['id_kasir'];
