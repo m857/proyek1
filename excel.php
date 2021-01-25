@@ -24,8 +24,8 @@
             <thead>
                 <tr bgcolor="yellow">
                     <th> No</th>
-                    <th> ID Barang</th>
-                    <th> Nama Barang</th>
+                    <th> ID Sepatu</th>
+                    <th> Nama Sepatu</th>
                     <th style="width:10%;"> Jumlah</th>
                     <th style="width:20%;"> Total</th>
                     <th> Kasir</th>
@@ -69,8 +69,8 @@
             <thead>
                 <tr bgcolor="yellow">
                     <th> No</th>
-                    <th> ID Barang</th>
-                    <th> Nama Barang</th>
+                    <th> ID Sepatu</th>
+                    <th> Nama Sepatu</th>
                     <th style="width:10%;"> Jumlah</th>
                     <th style="width:20%;"> Total</th>
                     <th> Kasir</th>

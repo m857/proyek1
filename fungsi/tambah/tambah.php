@@ -17,23 +17,27 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$kategori = $_POST['kategori'];
 		$nama = $_POST['nama'];
 		$merk = $_POST['merk'];
+		$namsup = $_POST['namsup'];
 		$beli = $_POST['beli'];
 		$jual = $_POST['jual'];
 		$satuan = $_POST['satuan'];
 		$stok = $_POST['stok'];
+		$ukuran = $_POST['ukuran'];
 		$tgl = $_POST['tgl'];
 		
 		$data[] = $id;
 		$data[] = $kategori;
 		$data[] = $nama;
+		$data[] = $namsup;
 		$data[] = $merk;
 		$data[] = $beli;
 		$data[] = $jual;
 		$data[] = $satuan;
 		$data[] = $stok;
+		$data[] = $ukuran;
 		$data[] = $tgl;
-		$sql = 'INSERT INTO barang (id_barang,id_kategori,nama_barang,merk,harga_beli,harga_jual,satuan_barang,stok,tgl_input) 
-			    VALUES (?,?,?,?,?,?,?,?,?) ';
+		$sql = 'INSERT INTO barang (id_barang,id_kategori,nama_barang,id_supplier,merk,harga_beli,harga_jual,satuan_barang,stok,ukuran,tgl_input) 
+			    VALUES (?,?,?,?,?,?,?,?,?,?,?) ';
 		$row = $config -> prepare($sql);
 		$row -> execute($data);
 		echo '<script>window.location="../../index.php?page=barang&success=tambah-data"</script>';
@@ -70,5 +74,24 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$row1 = $config -> prepare($sql1);
 		$row1 -> execute($data1);
  		echo '<script>window.location="../../index.php?page=jual&success=tambah-data"</script>';
+	}
+	if(!empty($_GET['beli'])){
+		$id = $_GET['id'];
+		$kasir =  $_GET['id_kasir'];
+		$jumlah = '0';
+		$total = '0';
+		$tgl = date("j F Y, G:i");
+		$ids =  $_GET['ids'];
+		
+		$data1[] = $id;
+		$data1[] = $kasir;
+		$data1[] = $jumlah;
+		$data1[] = $total;
+		$data1[] = $tgl;
+		$data1[] = $ids;
+		$sql1 = 'INSERT INTO pembelian (id_barang,id_member,jumlah,total,tanggal_input,id_supplier) VALUES (?,?,?,?,?,?)';
+		$row1 = $config -> prepare($sql1);
+		$row1 -> execute($data1);
+ 		echo '<script>window.location="../../index.php?page=beli&success=tambah-data"</script>';
 	}
 }

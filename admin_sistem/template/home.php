@@ -24,15 +24,17 @@
 							echo "
 							<div class='alert alert-warning'>
 								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								<span class='pull-right'><a href='index.php?page=barang'>Tabel Barang <i class='fa fa-angle-double-right'></i></a></span>
+								<span class='pull-right'><a href='index.php?page=beli'>Transaksi Pembelian <i class='fa fa-angle-double-right'></i></a></span>
 							</div>
 							";	
 						}
 					?>
 				  <?php $hasil_barang = $lihat -> barang_row();?>
+				  <?php $hasil_supplier = $lihat -> supplier_row();?>
 				  <?php $hasil_kategori = $lihat -> kategori_row();?>
 				  <?php $stok = $lihat -> barang_stok_row();?>
 				  <?php $jual = $lihat -> jual_row();?>
+				  <?php $beli = $lihat -> beli_row();?>
                     <div class="row">
                       <!--STATUS PANELS -->
                       	<div class="col-md-3">
@@ -53,10 +55,10 @@
 						  			<h5><i class="fa fa-desktop"></i> Nama Supplier</h5>
                       			</div>
                       			<div class="panel-body">
-									<center><h1><?php echo $hasil_barang;?></h1></center>
+									<center><h1><?php echo $hasil_supplier;?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Supplier <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=supplier'>Tabel Supplier <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
                       	</div><!-- /col-md-3-->
@@ -64,18 +66,18 @@
                       	<div class="col-md-3">
                       		<div class="panel panel-success">
                       			<div class="panel-heading">
-						  			<h5><i class="fa fa-desktop"></i> Stok Barang</h5>
+						  			<h5><i class="fa fa-desktop"></i> Stok Sepatu</h5>
                       			</div>
                       			<div class="panel-body">
 									<center><h1><?php echo $stok['jml'];?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Barang  <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Sepatu  <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
-							  <div class="panel panel-danger">
+							  <div class="panel panel-success">
                       			<div class="panel-heading">
-						  			<h5><i class="fa fa-desktop"></i> Kategori Barang</h5>
+						  			<h5><i class="fa fa-desktop"></i> Kategori Sepatu</h5>
                       			</div>
                       			<div class="panel-body">
 									<center><h1><?php echo $hasil_kategori;?></h1></center>
@@ -88,7 +90,7 @@
 						  
                       <!-- STATUS PANELS -->
                       	<div class="col-md-3">
-                      		<div class="panel panel-info">
+                      		<div class="panel panel-danger">
                       			<div class="panel-heading">
 						  			<h5><i class="fa fa-desktop"></i> Telah Terjual </h5>
                       			</div>
@@ -106,10 +108,10 @@
 						  			<h5><i class="fa fa-desktop"></i> Telah Terbeli </h5>
                       			</div>
                       			<div class="panel-body">
-									<center><h1><?php echo $jual['stok'];?></h1></c nter>
+									<center><h1><?php echo $beli['stok'];?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;font-weight:700;"><a href='index.php?page=laporan'>Tabel laporan Pembelian <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;font-weight:700;"><a href='index.php?page=laporanbeli'>Tabel laporan Pembelian <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
                       	</div><!-- /col-md-3-->

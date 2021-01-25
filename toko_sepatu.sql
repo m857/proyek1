@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jan 2021 pada 05.37
+-- Waktu pembuatan: 25 Jan 2021 pada 03.36
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -48,8 +48,9 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`, `tgl_update`, `ukuran`, `id_supplier`) VALUES
-(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '14', '9 January 2021, 11:29', NULL, '38', 1),
-(5, 'SPT002', 2, 'Boots', 'AP Boots', '100000', '130000', 'Pasang', '11', '11 January 2021, 12:50', '22 January 2021, 14:07', '40', 2);
+(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '16', '9 January 2021, 11:29', NULL, '38', 1),
+(5, 'SPT002', 2, 'Boots', 'AP Boots', '100000', '130000', 'Pasang', '16', '11 January 2021, 12:50', '22 January 2021, 14:07', '40', 2),
+(9, 'SPT003', 1, 'Flat Shoes', 'Bata', '100000', '120000', 'Pasang', '17', '25 January 2021, 3:39', NULL, '35', 2);
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,52 @@ INSERT INTO `nota` (`id_nota`, `id_barang`, `id_member`, `jumlah`, `total`, `tan
 (22, 'SPT001', 1, '1', '165000', '10 January 2021, 5:53', '01-2021'),
 (23, 'SPT002', 1, '10', '1200000', '11 January 2021, 13:04', '01-2021'),
 (24, 'SPT002', 2, '1', '120000', '16 January 2021, 7:38', '01-2021'),
-(25, 'SPT001', 2, '2', '330000', '16 January 2021, 7:40', '01-2021');
+(25, 'SPT001', 2, '2', '330000', '16 January 2021, 7:40', '01-2021'),
+(27, 'SPT002', 1, '1', '130000', '24 January 2021, 7:14', '01-2021'),
+(28, 'SPT002', 2, '1', '130000', '24 January 2021, 14:08', '01-2021'),
+(29, 'SPT002', 1, '2', '260000', '24 January 2021, 14:15', '01-2021'),
+(30, 'SPT001', 1, '1', '165000', '24 January 2021, 14:47', '01-2021'),
+(31, 'SPT001', 1, '1', '165000', '24 January 2021, 14:57', '01-2021'),
+(32, 'SPT001', 1, '1', '165000', '24 January 2021, 23:56', '01-2021'),
+(33, 'SPT001', 1, '1', '165000', '25 January 2021, 0:36', '01-2021'),
+(34, 'SPT001', 1, '1', '165000', '25 January 2021, 0:36', '01-2021'),
+(35, 'SPT001', 2, '1', '165000', '25 January 2021, 3:15', '01-2021'),
+(36, 'SPT001', 2, '1', '165000', '25 January 2021, 5:15', '01-2021'),
+(37, 'SPT001', 2, '2', '330000', '25 January 2021, 5:17', '01-2021'),
+(38, 'SPT001', 1, '1', '165000', '25 January 2021, 5:18', '01-2021');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `nota_pembelian`
+--
+
+CREATE TABLE `nota_pembelian` (
+  `id_nota_pembelian` int(11) NOT NULL,
+  `id_barang` varchar(255) NOT NULL,
+  `id_member` int(11) NOT NULL,
+  `jumlah` varchar(255) NOT NULL,
+  `total` varchar(255) NOT NULL,
+  `tanggal_input` varchar(255) NOT NULL,
+  `periode` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `nota_pembelian`
+--
+
+INSERT INTO `nota_pembelian` (`id_nota_pembelian`, `id_barang`, `id_member`, `jumlah`, `total`, `tanggal_input`, `periode`) VALUES
+(26, 'SPT001', 1, '1', '150000', '25 January 2021, 2:17', '01-2021'),
+(27, 'SPT001', 1, '3', '450000', '25 January 2021, 2:26', '01-2021'),
+(28, 'SPT002', 1, '5', '500000', '25 January 2021, 2:32', '01-2021'),
+(67, 'SPT002', 1, '5', '500000', '25 January 2021, 2:32', '0'),
+(68, 'SPT002', 1, '1', '100000', '25 January 2021, 2:37', '01-2021'),
+(69, 'SPT001', 1, '1', '150000', '25 January 2021, 2:51', '01-2021'),
+(70, 'SPT003', 1, '5', '500000', '25 January 2021, 4:44', '01-2021'),
+(71, 'SPT003', 1, '5', '500000', '25 January 2021, 4:45', '01-2021'),
+(72, 'SPT003', 1, '5', '500000', '25 January 2021, 4:47', '01-2021'),
+(73, 'SPT003', 1, '5', '500000', '25 January 2021, 4:47', '2'),
+(74, 'SPT003', 1, '2', '200000', '25 January 2021, 5:21', '01-2021');
 
 -- --------------------------------------------------------
 
@@ -165,7 +211,8 @@ CREATE TABLE `pembelian` (
   `id_member` int(11) NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
-  `tanggal_input` varchar(255) NOT NULL
+  `tanggal_input` varchar(255) NOT NULL,
+  `id_supplier` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -288,6 +335,18 @@ ALTER TABLE `nota`
   ADD PRIMARY KEY (`id_nota`);
 
 --
+-- Indeks untuk tabel `nota_pembelian`
+--
+ALTER TABLE `nota_pembelian`
+  ADD PRIMARY KEY (`id_nota_pembelian`);
+
+--
+-- Indeks untuk tabel `pembelian`
+--
+ALTER TABLE `pembelian`
+  ADD PRIMARY KEY (`id_pembelian`);
+
+--
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
@@ -313,7 +372,7 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -337,13 +396,25 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT untuk tabel `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT untuk tabel `nota_pembelian`
+--
+ALTER TABLE `nota_pembelian`
+  MODIFY `id_nota_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembelian`
+--
+ALTER TABLE `pembelian`
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`

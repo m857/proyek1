@@ -32,7 +32,7 @@
 						<?php }?>
 						<table class="table table-striped">
 								<tr>
-									<td>ID Barang</td>
+									<td>ID Sepatu</td>
 									<td><?php echo $hasil['id_barang'];?></td>
 								</tr>
 								<tr>
@@ -60,7 +60,7 @@
 									<td><?php echo $hasil['harga_jual'];?></td>
 								</tr>
 								<tr>
-									<td>Satuan Barang</td>
+									<td>Satuan Sepatu</td>
 									<td><?php echo $hasil['satuan_barang'];?></td>
 								</tr>
 								<tr>

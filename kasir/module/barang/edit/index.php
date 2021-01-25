@@ -14,7 +14,7 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 					  	<a href="index.php?page=barang"><button class="btn btn-primary"><i class="fa fa-angle-left"></i> Balik </button></a>
-						<h3>Details Barang</h3>
+						<h3>Details Sepatu</h3>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
 							<p>Edit Data Berhasil !</p>
@@ -28,7 +28,7 @@
 						<table class="table table-striped">
 							<form action="fungsi/edit/edit.php?barang=edit" method="POST">
 								<tr>
-									<td>ID Barang</td>
+									<td>ID Sepatu</td>
 									<td><input type="text" readonly="readonly" class="form-control" value="<?php echo $hasil['id_barang'];?>" name="id"></td>
 								</tr>
 								<tr>
@@ -44,12 +44,24 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Nama Barang</td>
+									<td>Nama Sepatu</td>
 									<td><input type="text" class="form-control" value="<?php echo $hasil['nama_barang'];?>" name="nama"></td>
 								</tr>
 								<tr>
-									<td>Merk Barang</td>
+									<td>Merk Sepatu</td>
 									<td><input type="text" class="form-control" value="<?php echo $hasil['merk'];?>" name="merk"></td>
+								</tr>
+								<tr>
+									<td>Nama Supplier</td>
+									<td>
+									<select name="namsup" class="form-control">
+										<option value="<?php echo $hasil['id_supplier'];?>"><?php echo $hasil['nama_supplier'];?></option>
+										<option value="#">Pilih Kategori</option>
+										<?php  $sup = $lihat -> supplier(); foreach($sup as $isi){ 	?>
+										<option value="<?php echo $isi['id_supplier'];?>"><?php echo $isi['nama_supplier'];?></option>
+										<?php }?>
+									</select>
+									</td>
 								</tr>
 								<tr>
 									<td>Harga Beli</td>
@@ -60,7 +72,7 @@
 									<td><input type="number" class="form-control" value="<?php echo $hasil['harga_jual'];?>" name="jual"></td>
 								</tr>
 								<tr>
-									<td>Satuan Barang</td>
+									<td>Satuan Sepatu</td>
 									<td>
 										<select name="satuan" class="form-control">
 											<option value="<?php echo $hasil['satuan_barang'];?>"><?php echo $hasil['satuan_barang'];?></option>
@@ -72,6 +84,10 @@
 								<tr>
 									<td>Stok</td>
 									<td><input type="number" class="form-control" value="<?php echo $hasil['stok'];?>" name="stok"></td>
+								</tr>
+								<tr>
+									<td>Ukuran Sepatu</td>
+									<td><input type="number" class="form-control" value="<?php echo $hasil['ukuran'];?>" name="ukuran"></td>
 								</tr>
 								<tr>
 									<td>Tanggal Update</td>

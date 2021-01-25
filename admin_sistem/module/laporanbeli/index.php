@@ -9,7 +9,7 @@
 
               <div class="row">
                   <div class="col-lg-12 main-chart">
-						<h3>Data Laporan Penjualan
+						<h3>Data Laporan Pembelian
 							<a  style="padding-left:2pc;" href="fungsi/hapus/hapus.php?laporan=jual" onclick="javascript:return confirm('Data Laporan akan di Hapus ?');">
 								<button class="btn btn-danger">RESET</button>
 							</a>
@@ -20,7 +20,7 @@
 						</h3>
 						<br/>
 						<h4>Cari Laporan Per Bulan</h4>
-						<form method="post" action="index.php?page=laporan&cari=ok">
+						<form method="post" action="index.php?page=laporanbeli&cari=ok">
 							<table class="table table-striped">
 								<tr>
 									<th>
@@ -66,7 +66,7 @@
 									<button class="btn btn-primary">
 										<i class="fa fa-search"></i> Cari
 									</button>
-									<a href="index.php?page=laporan" class="btn btn-success">
+									<a href="index.php?page=laporanbeli" class="btn btn-success">
 										<i class="fa fa-refresh"></i> Refresh</a>
 										
 									<?php if(!empty($_GET['cari'])){?>
@@ -90,8 +90,8 @@
 								<thead>
 									<tr style="background:#DFF0D8;color:#333;">
 										<th> No</th>
-										<th> ID Barang</th>
-										<th> Nama Barang</th>
+										<th> ID Sepatu</th>
+										<th> Nama Sepatu</th>
 										<th style="width:10%;"> Jumlah</th>
 										<th style="width:20%;"> Total</th>
 										<th> Kasir</th>
@@ -104,7 +104,7 @@
 										$no=1; 
 										$jumlah = 0;
 										$bayar = 0;
-										$hasil = $lihat -> periode_jual($periode);
+										$hasil = $lihat -> periode_beli($periode);
 										foreach($hasil as $isi){
 											$bayar += $isi['total'];
 											$jumlah += $isi['jumlah'];
@@ -119,7 +119,7 @@
 										<td><?php echo $isi['tanggal_input'];?></td>
 									</tr>
 									<?php $no++; }?>
-									<?php $hasil = $lihat -> jumlah_nota(); ?>
+									<?php $hasil = $lihat -> jumlah_nota_pembelian(); ?>
 								</tbody>
 								<tfoot>
 									<tr>
@@ -138,8 +138,8 @@
 								<thead>
 									<tr style="background:#DFF0D8;color:#333;">
 										<th> No</th>
-										<th> ID Barang</th>
-										<th> Nama Barang</th>
+										<th> ID Sepatu</th>
+										<th> Nama Sepatu</th>
 										<th style="width:10%;"> Jumlah</th>
 										<th style="width:20%;"> Total</th>
 										<th> Kasir</th>
@@ -147,7 +147,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $no=1; $hasil = $lihat -> jual();?>
+									<?php $no=1; $hasil = $lihat -> beli();?>
 									<?php 
 										print_r($hasil['nm_member']);
 										$bayar = 0;
@@ -167,7 +167,7 @@
 										<td><?php echo $isi['tanggal_input'];?></td>
 									</tr>
 									<?php $no++; }?>
-									<?php $hasil = $lihat -> jumlah_nota(); ?>
+									<?php $hasil = $lihat -> jumlah_nota_pembelian(); ?>
 								</tbody>
 								<tfoot>
 									<tr>

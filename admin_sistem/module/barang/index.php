@@ -9,7 +9,7 @@
 
               <div class="row">
                   <div class="col-lg-12 main-chart">
-						<h3>Data Barang</h3>
+						<h3>Data Sepatu</h3>
 						<br/>
 						<?php if(isset($_GET['success-stok'])){?>
 						<div class="alert alert-success">
@@ -37,16 +37,27 @@
 						<?php
 								echo "
 								<div class='alert alert-warning'>
-									<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								</div>
+								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
+								
+							</div>
 								";	
 							}
+						
+						?>
+					
+						<?php
+								echo "
+								<div class='alert alert-warning'>
+									<span class='glyphicon glyphicon-info-sign'></span> Hati Hati dalam <a style='color:red'> Hapus Data Sepatu </a> karena dapat berpengaruh dalam laporan !!
+								</div>
+								";	
+							
 						?>
 
 						<!-- Trigger the modal with a button -->
 						
 						<button type="button" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-							<i class="fa fa-plus"></i> Insert Data</button>
+							<i class="fa fa-plus"></i> Insert Data Sepatu</button>
 						<div class="clearfix"></div>
 						<br/>
 						
@@ -56,14 +67,14 @@
 								<thead>
 									<tr style="background:#DFF0D8;color:#333;">
 										<th>No.</th>
-										<th>ID Barang</th>
-										<th>Kategori</th>
-										<th>Nama Barang</th>
-										<th>Merk</th>
+										<th>ID Sepatu</th>
+										<!-- <th>Nama Supplier</th> -->
+										<th>Nama Sepatu</th>
+										<!-- <th>Merk</th> -->
 										<th>Stok</th>
 										<th>Harga Beli</th>
 										<th>Harga Jual</th>
-										<th>Satuan</th>
+										<!-- <th>Satuan</th> -->
 										<th>Aksi</th>
 									</tr>
 								</thead>
@@ -80,35 +91,46 @@
 									<tr>
 										<td><?php echo $no;?></td>
 										<td><?php echo $isi['id_barang'];?></td>
-										<td><?php echo $isi['nama_kategori'];?></td>
+										<!-- <td><?php //echo $isi['nama_supplier'];?></td> -->
 										<td><?php echo $isi['nama_barang'];?></td>
-										<td><?php echo $isi['merk'];?></td>
+										<!-- <td><?php //echo $isi['merk'];?></td> -->
 										<td>
 											<?php if($isi['stok'] == '0'){?>
-												<button class="btn btn-danger"> Habis</button>
+												<button class="btn btn-danger"> Kosong </button>
 											<?php }else{?>
 												<?php echo $isi['stok'];?>
 											<?php }?>
 										</td>
 										<td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
 										<td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
-										<td> <?php echo $isi['satuan_barang'];?></td>
+										<!-- <td> <?php //echo $isi['satuan_barang'];?></td> -->
 										<td>
 											
 											
 											<?php if($isi['stok'] <=  '3'){?>
-												<form method="POST" action="fungsi/edit/edit.php?stok=edit">
-													<input type="text" name="restok" class="form-control">
-													<input type="hidden" name="id" value="<?php echo $isi['id_barang'];?>" class="form-control">
-													<button class="btn btn-primary">
-														Restok
-													</button>
-												</form>
-											<?php }else{?>
+												<!-- <form method="POST" action="admin_sistem/module/jual/index.php?id=<?php //echo $_SESSION['admin sistem']['id_member'];?>"> -->
+													<!-- <input type="text" name="restok" class="form-control"> -->
+													<!-- <input type="hidden" name="id" value="<?php //echo $isi['id_barang'];?>" class="form-control"> -->
+													<!-- <button class="btn btn-primary"> -->
+													<center>
 											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
 										
 											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
+											<a href='index.php?page=beli'><button class="btn btn-primary btn-xs">Restok</button></i></a>
+											</center>
+													
+													<!-- <p> Silahkan melakukan pembelian sepatu <br> Pada halaman Transaksi Beli </p> -->
+													
+													<!-- </button> -->
+												<!-- </form> -->
+											<?php }else{?>
+											<center>
+											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
+										
+											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
+											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
+											</center>
 											<?php }?>
 											
 											
@@ -123,7 +145,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="5">Total </td>
+										<th colspan="3">Total </td>
 										<th><?php echo $totalStok;?></td>
 										<th>Rp.<?php echo number_format($totalBeli);?>,-</td>
 										<th>Rp.<?php echo number_format($totalJual);?>,-</td>
@@ -143,7 +165,7 @@
 								<div class="modal-content" style=" border-radius:0px;">
 								<div class="modal-header" style="background:#285c64;color:#fff;">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title"><i class="fa fa-plus"></i> Tambah Barang</h4>
+									<h4 class="modal-title"><i class="fa fa-plus"></i> Tambah Sepatu</h4>
 								</div>										
 								<form action="fungsi/tambah/tambah.php?barang=tambah" method="POST">
 									<div class="modal-body">
@@ -154,7 +176,7 @@
 												$format = $lihat -> barang_id();
 											?>
 											<tr>
-												<td>ID Barang</td>
+												<td>ID Sepatu</td>
 												<td><input type="text" readonly="readonly" required value="<?php echo $format;?>" class="form-control"  name="id"></td>
 											</tr>
 											<tr>
@@ -175,7 +197,7 @@
 											<tr>
 												<td>Nama Supplier</td>
 												<td>
-												<select name="kategori" class="form-control" required>
+												<select name="namsup" class="form-control" required>
 													<option value="#">Pilih Supplier</option>
 													<?php  $sup = $lihat -> supplier(); foreach($sup as $isi){ 	?>
 													<option value="<?php echo $isi['id_supplier'];?>"><?php echo $isi['nama_supplier'];?></option>
@@ -196,7 +218,7 @@
 												<td><input type="number" placeholder="Harga Jual" required class="form-control"  name="jual"></td>
 											</tr>
 											<tr>
-												<td>Satuan Barang</td>
+												<td>Satuan Sepatu</td>
 												<td>
 													<select name="satuan" class="form-control" required>
 														<option value="#">Pilih Satuan</option>
@@ -206,10 +228,10 @@
 											</tr>
 											<tr>
 												<td>Stok</td>
-												<td><input type="number" readonly="readonly" value="0" class="form-control"  name="stok"></td>
+												<td><input type="number" class="form-control" readonly="readonly" value="0"  name="stok"></td>
 											</tr>
 											<tr>
-												<td>Ukuran</td>
+												<td>Ukuran Sepatu</td>
 												<td><input type="number" required Placeholder="Ukuran" class="form-control"  name="ukuran"></td>
 											</tr>
 											<tr>

@@ -41,8 +41,9 @@
 			}
 
 			function barang(){
-				$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori
+				$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
 						from barang inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier
 						ORDER BY id_barang DESC";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
@@ -131,6 +132,14 @@
 				return $hasil;
 			}
 
+			function supplier_row(){
+				$sql = "select*from supplier";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> rowCount();
+				return $hasil;
+			}
+
 			function barang_stok_row(){
 				$sql ="SELECT SUM(stok) as jml FROM barang";
 				$row = $this-> db -> prepare($sql);
@@ -154,6 +163,14 @@
 				$hasil = $row -> fetch();
 				return $hasil;
 			}
+		
+			function beli_row(){
+				$sql ="SELECT SUM(jumlah) as stok FROM nota_pembelian";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetch();
+				return $hasil;
+			}
 
 			function jual(){
 				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member,
@@ -166,8 +183,30 @@
 				$hasil = $row -> fetchAll();
 				return $hasil;
 			}
-
 			
+			function beli(){
+				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
+						member.nm_member from nota_pembelian
+					   left join barang on barang.id_barang=nota_pembelian.id_barang 
+					   left join member on member.id_member=nota_pembelian.id_member 
+					   ORDER BY id_nota_pembelian DESC";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
+			
+			function periode_beli($periode){
+				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
+						member.nm_member from nota_pembelian 
+					   left join barang on barang.id_barang=nota_pembelian.id_barang 
+					   left join member on member.id_member=nota_pembelian.id_member WHERE nota_pembelian.periode = ?";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute(array($periode));
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
+
 			function periode_jual($periode){
 				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member,
 						member.nm_member from nota 
@@ -192,6 +231,19 @@
 				return $hasil;
 			}
 
+			function pembelian(){
+				$sql ="SELECT pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
+						member.nm_member, supplier.id_supplier, supplier.nama_supplier from pembelian 
+					   left join barang on barang.id_barang=pembelian.id_barang 
+					   left join member on member.id_member=pembelian.id_member 
+					   left join supplier on supplier.id_supplier=pembelian.id_supplier 
+					   ORDER BY id_pembelian";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
+
 			function jumlah(){
 				$sql ="SELECT SUM(total) as bayar FROM penjualan";
 				$row = $this -> db -> prepare($sql);
@@ -200,8 +252,24 @@
 				return $hasil;
 			}
 
+			function jumlah_beli(){
+				$sql ="SELECT SUM(total) as bayar FROM pembelian";
+				$row = $this -> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetch();
+				return $hasil;
+			}
+
 			function jumlah_nota(){
 				$sql ="SELECT SUM(total) as bayar FROM nota";
+				$row = $this -> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetch();
+				return $hasil;
+			}
+
+			function jumlah_nota_pembelian(){
+				$sql ="SELECT SUM(total) as bayar FROM nota_pembelian";
 				$row = $this -> db -> prepare($sql);
 				$row -> execute();
 				$hasil = $row -> fetch();

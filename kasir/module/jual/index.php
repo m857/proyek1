@@ -13,7 +13,11 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 						<h3>Keranjang Penjualan</h3>
-						<?php print_r($hasil) ?>
+						<?php if(isset($_GET['bayar'])){?>
+						<div class="alert alert-success">
+							<p>Belanjaan berhasil dibayar !</p>
+						</div>
+						<?php }?>
 						<br>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
@@ -79,7 +83,7 @@
 											<tbody>
 												<?php $total_bayar=0; $no=1; $hasil_penjualan = $lihat -> penjualan();?>
 												<?php foreach($hasil_penjualan  as $isi){;?>
-												<?php print_r($hasil_penjualan); ?>
+												
 												<tr>
 													<td><?php echo $no;?></td>
 													<td><?php echo $isi['nama_barang'];?></td>

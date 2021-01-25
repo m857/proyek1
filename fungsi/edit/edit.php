@@ -55,23 +55,27 @@ if(!empty($_SESSION['admin sistem'])){
 		$kategori = htmlentities($_POST['kategori']);
 		$nama = htmlentities($_POST['nama']);
 		$merk = htmlentities($_POST['merk']);
+		$namsup = htmlentities($_POST['namsup']);
 		$beli = htmlentities($_POST['beli']);
 		$jual = htmlentities($_POST['jual']);
 		$satuan = htmlentities($_POST['satuan']);
 		$stok = htmlentities($_POST['stok']);
+		$ukuran = htmlentities($_POST['ukuran']);
 		$tgl = htmlentities($_POST['tgl']);
 		
 		$data[] = $kategori;
 		$data[] = $nama;
 		$data[] = $merk;
+		$data[] = $namsup;
 		$data[] = $beli;
 		$data[] = $jual;
 		$data[] = $satuan;
 		$data[] = $stok;
+		$data[] = $ukuran;
 		$data[] = $tgl;
 		$data[] = $id;
-		$sql = 'UPDATE barang SET id_kategori=?, nama_barang=?, merk=?, 
-				harga_beli=?, harga_jual=?, satuan_barang=?, stok=?, tgl_update=?  WHERE id_barang=?';
+		$sql = 'UPDATE barang SET id_kategori=?, nama_barang=?, merk=?, id_supplier=?,
+				harga_beli=?, harga_jual=?, satuan_barang=?, stok=?, ukuran=?, tgl_update=?  WHERE id_barang=?';
 		$row = $config -> prepare($sql);
 		$row -> execute($data);
 		echo '<script>window.location="../../index.php?page=barang/edit&barang='.$id.'&success=edit-data"</script>';
@@ -233,6 +237,76 @@ if(!empty($_SESSION['admin sistem'])){
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
 				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>" 
+					class="btn btn-success">
+					<i class="fa fa-shopping-cart"></i></a></td>
+			</tr>
+		<?php }?>
+		</table>
+<?php	
+		}
+	}
+
+	if(!empty($_GET['beli'])){
+		$id = htmlentities($_POST['id']);
+		$id_barang = htmlentities($_POST['id_barang']);
+		$jumlah = htmlentities($_POST['jumlah']);
+		
+		$sql_tampil = "select *from barang where barang.id_barang=?";
+		$row_tampil = $config -> prepare($sql_tampil);
+		$row_tampil -> execute(array($id_barang));
+		$hasil = $row_tampil -> fetch();
+
+		// if($hasil['stok'] > $jumlah)
+		// {
+			$beli2 = $hasil['harga_beli'];
+			$total = $beli2 * $jumlah;
+			$data1[] = $jumlah;
+			$data1[] = $total;
+			$data1[] = $id;
+			$sql1 = 'UPDATE pembelian SET jumlah=?,total=? WHERE id_pembelian=?';
+			$row1 = $config -> prepare($sql1);
+			$row1 -> execute($data1);
+			echo '<script>window.location="../../index.php?page=beli#keranjang"</script>';
+		// }else{
+		// 	echo '<script>alert("Keranjang Melebihi Stok Barang Anda !");
+		// 			window.location="../../index.php?page=beli#keranjang"</script>';
+		// }
+		
+	}
+
+
+	if(!empty($_GET['cari_barang_beli'])){
+		$cari = trim(strip_tags($_POST['keyword']));
+		if($cari == '')
+		{
+
+		}else{
+			$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+					from barang inner join kategori on barang.id_kategori = kategori.id_kategori
+					inner join supplier on barang.id_supplier = supplier.id_supplier
+					where barang.id_barang like '%$cari%' or barang.nama_barang like '%$cari%' or barang.merk like '%$cari%' or supplier.nama_supplier like '%$cari%' ";
+			$row = $config -> prepare($sql);
+			$row -> execute();
+			$hasil1= $row -> fetchAll();
+	?>
+		<table class="table table-stripped" width="100%" id="example2">
+			<tr>
+				<th>ID Barang</th>
+				<th>Nama Barang</th>
+				<th>Nama Supplier</th>
+				<th>Stok</th>
+				<th>Harga Beli</th>
+				<th>Aksi</th>
+			</tr>
+		<?php foreach($hasil1 as $hasil){?>
+			<tr>
+				<td><?php echo $hasil['id_barang'];?></td>
+				<td><?php echo $hasil['nama_barang'];?></td>
+				<td><?php echo $hasil['nama_supplier'];?></td>
+				<td><?php echo $hasil['stok'];?></td>
+				<td><?php echo $hasil['harga_beli'];?></td>
+				<td>
+				<a href="fungsi/tambah/tambah.php?beli=beli&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $hasil['id_supplier']?>" 
 					class="btn btn-success">
 					<i class="fa fa-shopping-cart"></i></a></td>
 			</tr>
@@ -426,6 +500,7 @@ else if(!empty($_SESSION['kasir'])){
 		}
 		
 	}
+
 
 	if(!empty($_GET['cari_barang'])){
 		$cari = trim(strip_tags($_POST['keyword']));

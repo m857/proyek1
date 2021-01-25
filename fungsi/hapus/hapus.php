@@ -34,7 +34,7 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$rowI -> execute($dataI);
 		$hasil = $rowI -> fetch();
 		
-		$jml = $_GET['jml'] + $hasil['stok'];
+		$jml = $hasil['stok'];
 		
 		$dataU[] = $jml;
 		$dataU[] = $_GET['brg'];
@@ -60,12 +60,53 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$row -> execute();
 		echo '<script>window.location="../../index.php?page=jual"</script>';
 	}
+	if(!empty($_GET['beli'])){
+		
+		$dataI[] = $_GET['brg'];
+		$sqlI = 'select*from barang where id_barang=?';
+		$rowI = $config -> prepare($sqlI);
+		$rowI -> execute($dataI);
+		$hasil = $rowI -> fetch();
+		
+		$jml = $hasil['stok'];
+		
+		$dataU[] = $jml;
+		$dataU[] = $_GET['brg'];
+		$sqlU = 'UPDATE barang SET stok =? where id_barang=?';
+		$rowU = $config -> prepare($sqlU);
+		$rowU -> execute($dataU);
+		
+		$id = $_GET['id'];
+		$data[] = $id;
+		$sql = 'DELETE FROM pembelian WHERE id_pembelian=?';
+		$row = $config -> prepare($sql);
+		$row -> execute($data);
+		echo '<script>window.location="../../index.php?page=beli"</script>';
+	}
+	if(!empty($_GET['pembelian'])){
+		
+		$sqlI = 'INSERT INTO nota_pembelian SELECT * FROM pembelian';
+		$rowI = $config -> prepare($sqlI);
+		$rowI -> execute($dataI);
+		
+		$sql = 'DELETE FROM pembelian';
+		$row = $config -> prepare($sql);
+		$row -> execute();
+		echo '<script>window.location="../../index.php?page=beli"</script>';
+	}
 	if(!empty($_GET['laporan'])){
 		
 		$sql = 'DELETE FROM nota';
 		$row = $config -> prepare($sql);
 		$row -> execute();
 		echo '<script>window.location="../../index.php?page=laporan&remove=hapus"</script>';
+	}
+	if(!empty($_GET['laporanbeli'])){
+		
+		$sql = 'DELETE FROM nota_pembelian';
+		$row = $config -> prepare($sql);
+		$row -> execute();
+		echo '<script>window.location="../../index.php?page=laporanbeli&remove=hapus"</script>';
 	}
 }
 

@@ -12,7 +12,7 @@
           <section class="wrapper">
               <div class="row">
                   <div class="col-lg-12 main-chart">
-						<h3>Keranjang Penjualan</h3>
+						<h3>Keranjang Pembelian</h3>
 						
 						<br>
 						<?php if(isset($_GET['success'])){?>
@@ -25,10 +25,15 @@
 							<p>Hapus Data Berhasil !</p>
 						</div>
 						<?php }?>
+						<?php if(isset($_GET['bayar'])){?>
+						<div class="alert alert-success">
+							<p>Belanjaan berhasil dibayar !</p>
+						</div>
+						<?php }?>
 						<div class="col-sm-4">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h4><i class="fa fa-search"></i> Cari Barang</h4>
+									<h4><i class="fa fa-search"></i> Cari </h4>
 								</div>
 								<div class="panel-body">
 									<input type="text" id="cari" class="form-control" name="cari" placeholder="Masukan : Kode / Nama Barang  [ENTER]">
@@ -53,7 +58,7 @@
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<h4><i class="fa fa-shopping-cart"></i> KASIR
-									<a class="btn btn-danger pull-right" style="margin-top:-0.5pc;" href="fungsi/hapus/hapus.php?penjualan=jual">
+									<a class="btn btn-danger pull-right" style="margin-top:-0.5pc;" href="fungsi/hapus/hapus.php?pembelian=beli">
 										<b>RESET KERANJANG</b></a>
 									</h4>
 								</div>
@@ -69,7 +74,7 @@
 											<thead>
 												<tr>
 													<td> No</td>
-													<td> Nama Barang</td>
+													<td> Nama Sepatu</td>
 													<td style="width:10%;"> Jumlah</td>
 													<td style="width:20%;"> Total</td>
 													<td> Kasir</td>
@@ -77,16 +82,16 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php $total_bayar=0; $no=1; $hasil_penjualan = $lihat -> penjualan();?>
+												<?php $total_bayar=0; $no=1; $hasil_pembelian = $lihat -> pembelian();?>
 												
-												<?php foreach($hasil_penjualan  as $isi){;?>
+												<?php foreach($hasil_pembelian  as $isi){;?>
 												<tr>
 													<td><?php echo $no;?></td>
 													<td><?php echo $isi['nama_barang'];?></td>
 													<td>
-														<form method="POST" action="fungsi/edit/edit.php?jual=jual">
+														<form method="POST" action="fungsi/edit/edit.php?beli=beli">
 															<input type="number" name="jumlah" value="<?php echo $isi['jumlah'];?>" class="form-control">
-															<input type="hidden" name="id" value="<?php echo $isi['id_penjualan'];?>" class="form-control">
+															<input type="hidden" name="id" value="<?php echo $isi['id_pembelian'];?>" class="form-control">
 															<input type="hidden" name="id_barang" value="<?php echo $isi['id_barang'];?>" class="form-control">
 													</td>
 													<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
@@ -94,7 +99,7 @@
 													<td>
 															<button type="submit" class="btn btn-warning">Update</button>
 														</form>
-														<a href="fungsi/hapus/hapus.php?jual=jual&id=<?php echo $isi['id_penjualan'];?>&brg=<?php echo $isi['id_barang'];?>
+														<a href="fungsi/hapus/hapus.php?beli=beli&id=<?php echo $isi['id_pembelian'];?>&brg=<?php echo $isi['id_barang'];?>
 														&jml=<?php echo $isi['jumlah']; ?>"  class="btn btn-danger"><i class="fa fa-times"></i>
 														</a>
 													</td>
@@ -103,7 +108,7 @@
 											</tbody>
 									</table>
 									<br/>
-									<?php $hasil = $lihat -> jumlah(); ?>
+									<?php $hasil = $lihat -> jumlah_beli(); ?>
 									<div id="kasirnya">
 										<table class="table table-stripped">
 											<?php
@@ -127,7 +132,7 @@
 														for($x=0;$x<$jumlah_dipilih;$x++){
 
 															$d = array($id_barang[$x],$id_member[$x],$jumlah[$x],$total[$x],$tgl_input[$x],$periode[$x]);
-															$sql = "INSERT INTO nota (id_barang,id_member,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?)";
+															$sql = "INSERT INTO nota_pembelian (id_barang,id_member,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?)";
 															$row = $config->prepare($sql);
 															$row->execute($d);
 
@@ -140,7 +145,7 @@
 															$stok = $hsl['stok'];
 															$idb  = $hsl['id_barang'];
 
-															$total_stok = $stok - $jumlah[$x];
+															$total_stok = $stok + $jumlah[$x];
 															echo $total_stok;
 															$sql_stok = "UPDATE barang SET stok = ? WHERE id_barang = ?";
 															$row_stok = $config->prepare($sql_stok);
@@ -154,9 +159,9 @@
 												}
 											}
 											?>
-											<form method="POST" action="index.php?page=jual&nota=yes#kasirnya">
+											<form method="POST" action="index.php?page=beli&nota=yes#kasirnya">
 											
-												<?php foreach($hasil_penjualan as $isi){;?>
+												<?php foreach($hasil_pembelian as $isi){;?>
 													<input type="hidden" name="id_barang[]" value="<?php echo $isi['id_barang'];?>">
 													<input type="hidden" name="id_member[]" value="<?php echo $isi['id_member'];?>">
 													<input type="hidden" name="jumlah[]" value="<?php echo $isi['jumlah'];?>">
@@ -172,7 +177,7 @@
 													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
 													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-													 <a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
+													 <a class="btn btn-danger" href="fungsi/hapus/hapus.php?pembelian=beli">
 														<b>RESET</b></a></td><?php }?></td>
 												</tr>
 											</form>
@@ -181,7 +186,7 @@
 												<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
 												<td></td>
 												<td>
-													<a href="print.php?nm_member=<?php echo $_SESSION['admin sistem']['nm_member'];?>
+													<a href="print_beli.php?nm_member=<?php echo $_SESSION['admin sistem']['nm_member'];?>
 													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
 													<button class="btn btn-default">
 														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
@@ -209,7 +214,7 @@ $(document).ready(function(){
 	$("#cari").change(function(){
 		$.ajax({
 		type: "POST",
-		url: "fungsi/edit/edit.php?cari_barang=yes",
+		url: "fungsi/edit/edit.php?cari_barang_beli=yes",
 		data:'keyword='+$(this).val(),
 		beforeSend: function(){
             $("#hasil_cari").hide();

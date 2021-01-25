@@ -14,7 +14,7 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 					  	<a href="index.php?page=supplier"><button class="btn btn-primary"><i class="fa fa-angle-left"></i> Balik </button></a>
-						<h3>Details Barang</h3>
+						<h3>Details Sepatu</h3>
 	
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">

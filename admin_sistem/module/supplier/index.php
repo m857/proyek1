@@ -90,7 +90,7 @@
 								<div class="modal-content" style=" border-radius:0px;">
 								<div class="modal-header" style="background:#285c64;color:#fff;">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title"><i class="fa fa-plus"></i> Tambah Barang</h4>
+									<h4 class="modal-title"><i class="fa fa-plus"></i> Tambah Supplier</h4>
 								</div>										
 								<form action="fungsi/tambah/tambah.php?supplier=tambah" method="POST">
 									<div class="modal-body">
