@@ -38,13 +38,13 @@
                       	<div class="col-md-3">
                       		<div class="panel panel-primary">
                       			<div class="panel-heading">
-						  			<h5><i class="fa fa-desktop"></i> Nama Barang</h5>
+						  			<h5><i class="fa fa-desktop"></i> Sepatu</h5>
                       			</div>
                       			<div class="panel-body">
 									<center><h1><?php echo $hasil_barang;?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Barang <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Sepatu <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
                       	</div><!-- /col-md-3-->

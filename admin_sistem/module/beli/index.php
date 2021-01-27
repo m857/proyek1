@@ -25,11 +25,7 @@
 							<p>Hapus Data Berhasil !</p>
 						</div>
 						<?php }?>
-						<?php if(isset($_GET['bayar'])){?>
-						<div class="alert alert-success">
-							<p>Belanjaan berhasil dibayar !</p>
-						</div>
-						<?php }?>
+					
 						<div class="col-sm-4">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
@@ -52,7 +48,7 @@
 								</div>
 							</div>
 						</div>
-						
+					
 
 						<div class="col-sm-12">
 							<div class="panel panel-primary">
@@ -128,6 +124,7 @@
 														$tgl_input = $_POST['tgl_input'];
 														$periode = $_POST['periode'];
 														$jumlah_dipilih = count($id_barang);
+														$nama = $_SESSION['admin sistem']['nm_member'];
 														
 														for($x=0;$x<$jumlah_dipilih;$x++){
 
@@ -135,7 +132,6 @@
 															$sql = "INSERT INTO nota_pembelian (id_barang,id_member,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?)";
 															$row = $config->prepare($sql);
 															$row->execute($d);
-
 															// ubah stok barang
 															$sql_barang = "SELECT * FROM barang WHERE id_barang = ?";
 															$row_barang = $config->prepare($sql_barang);
@@ -152,7 +148,8 @@
 															$row_stok->execute(array($total_stok, $idb));
 															
 														}
-														echo '<script>alert("Belanjaan Berhasil Di Bayar !");</script>';
+														echo '<script>windows.location="index.php?nm_member=<?php echo $nama;?>
+														&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>#kasirnya";</script>';
 													}else{
 														echo '<script>alert("Uang Kurang ! Rp.'.$hitung.'");</script>';
 													}
@@ -172,16 +169,20 @@
 												<tr>
 													<td>Total Semua  </td>
 													<td><input type="text" class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
-												
+													<?php  if(empty($_GET['nota'])) {?>
+													
+													
 													<td>Bayar  </td>
 													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
+													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button><?php }?></td>
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-													 <a class="btn btn-danger" href="fungsi/hapus/hapus.php?pembelian=beli">
+													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>">
+													 <td> <a class="btn btn-danger" href="fungsi/hapus/hapus.php?pembelian=beli">
 														<b>RESET</b></a></td><?php }?></td>
 												</tr>
 											</form>
 											<tr>
+
 												<td>Kembali</td>
 												<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
 												<td></td>
@@ -192,10 +193,20 @@
 														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
 													</button></a>
 												</td>
+											<td></td>
+											
 
 											</tr>
+											<tr>
+											<td>
+												<?php if(!empty($_GET['nota'] == 'yes')){?>
+												<div class="alert alert-success">
+													<p>Belanjaan berhasil dibayar !</p>
+												</div>
+												<?php }?>
+											</td>
+											</tr>
 										</table>
-										
 										<br/>
 										<br/>
 									</div>

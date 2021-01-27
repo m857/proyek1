@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jan 2021 pada 03.36
+-- Waktu pembuatan: 26 Jan 2021 pada 04.43
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -48,7 +48,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`, `tgl_update`, `ukuran`, `id_supplier`) VALUES
-(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '16', '9 January 2021, 11:29', NULL, '38', 1),
+(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '10', '9 January 2021, 11:29', NULL, '38', 1),
 (5, 'SPT002', 2, 'Boots', 'AP Boots', '100000', '130000', 'Pasang', '16', '11 January 2021, 12:50', '22 January 2021, 14:07', '40', 2),
 (9, 'SPT003', 1, 'Flat Shoes', 'Bata', '100000', '120000', 'Pasang', '17', '25 January 2021, 3:39', NULL, '35', 2);
 
@@ -164,7 +164,11 @@ INSERT INTO `nota` (`id_nota`, `id_barang`, `id_member`, `jumlah`, `total`, `tan
 (35, 'SPT001', 2, '1', '165000', '25 January 2021, 3:15', '01-2021'),
 (36, 'SPT001', 2, '1', '165000', '25 January 2021, 5:15', '01-2021'),
 (37, 'SPT001', 2, '2', '330000', '25 January 2021, 5:17', '01-2021'),
-(38, 'SPT001', 1, '1', '165000', '25 January 2021, 5:18', '01-2021');
+(38, 'SPT001', 1, '1', '165000', '25 January 2021, 5:18', '01-2021'),
+(39, 'SPT001', 2, '1', '165000', '25 January 2021, 11:02', '01-2021'),
+(40, 'SPT001', 1, '1', '165000', '25 January 2021, 11:11', '01-2021'),
+(41, 'SPT001', 1, '1', '165000', '25 January 2021, 11:11', '01-2021'),
+(42, 'SPT001', 1, '3', '495000', '25 January 2021, 11:14', '01-2021');
 
 -- --------------------------------------------------------
 
@@ -396,7 +400,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT untuk tabel `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `nota_pembelian`
@@ -414,7 +418,7 @@ ALTER TABLE `pembelian`
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`

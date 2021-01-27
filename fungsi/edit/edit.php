@@ -225,6 +225,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<th>Nama Barang</th>
 				<th>Merk</th>
 				<th>Stok</th>
+				<th>Ukuran</th>
 				<th>Harga Jual</th>
 				<th>Aksi</th>
 			</tr>
@@ -234,6 +235,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<td><?php echo $hasil['nama_barang'];?></td>
 				<td><?php echo $hasil['merk'];?></td>
 				<td><?php echo $hasil['stok'];?></td>
+				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
 				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>" 
@@ -295,6 +297,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<th>Nama Barang</th>
 				<th>Nama Supplier</th>
 				<th>Stok</th>
+				<th>Ukuran</th>
 				<th>Harga Beli</th>
 				<th>Aksi</th>
 			</tr>
@@ -304,6 +307,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<td><?php echo $hasil['nama_barang'];?></td>
 				<td><?php echo $hasil['nama_supplier'];?></td>
 				<td><?php echo $hasil['stok'];?></td>
+				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_beli'];?></td>
 				<td>
 				<a href="fungsi/tambah/tambah.php?beli=beli&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $hasil['id_supplier']?>" 
@@ -521,6 +525,7 @@ else if(!empty($_SESSION['kasir'])){
 				<th>Nama Barang</th>
 				<th>Merk</th>
 				<th>Stok</th>
+				<th>Ukuran</th>
 				<th>Harga Jual</th>
 				<th>Aksi</th>
 			</tr>
@@ -530,6 +535,7 @@ else if(!empty($_SESSION['kasir'])){
 				<td><?php echo $hasil['nama_barang'];?></td>
 				<td><?php echo $hasil['merk'];?></td>
 				<td><?php echo $hasil['stok'];?></td>
+				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
 				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['kasir']['id_member'];?>" 

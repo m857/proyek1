@@ -36,8 +36,8 @@
                           <span>Sepatu <span style="padding-left:2px;"> <i class="fa fa-angle-down"></i></span></span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="index.php?page=barang">Barang</a></li>
                           <li><a  href="index.php?page=kategori">Kategori</a></li>
+                          <li><a  href="index.php?page=barang">Barang</a></li>
                       </ul>
                   </li>
 

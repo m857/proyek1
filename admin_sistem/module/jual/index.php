@@ -147,7 +147,8 @@
 															$row_stok->execute(array($total_stok, $idb));
 															
 														}
-														echo '<script>alert("Belanjaan Berhasil Di Bayar !");</script>';
+														echo '<script>windows.location="index.php?nm_member=<?php echo $nama;?>
+														&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>#kasirnya";</script>';
 													}else{
 														echo '<script>alert("Uang Kurang ! Rp.'.$hitung.'");</script>';
 													}
@@ -167,12 +168,13 @@
 												<tr>
 													<td>Total Semua  </td>
 													<td><input type="text" class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
-												
+													<?php  if(empty($_GET['nota'])) {?>
 													<td>Bayar  </td>
 													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
+													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button><?php }?></td>
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-													 <a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
+														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>">
+													<td><a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
 														<b>RESET</b></a></td><?php }?></td>
 												</tr>
 											</form>
@@ -188,6 +190,15 @@
 													</button></a>
 												</td>
 
+											</tr>
+											<tr>
+											<td>
+												<?php if(!empty($_GET['nota'] == 'yes')){?>
+												<div class="alert alert-success">
+													<p>Belanjaan berhasil dibayar !</p>
+												</div>
+												<?php }?>
+											</td>
 											</tr>
 										</table>
 										

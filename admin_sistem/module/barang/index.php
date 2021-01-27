@@ -113,11 +113,11 @@
 													<!-- <input type="hidden" name="id" value="<?php //echo $isi['id_barang'];?>" class="form-control"> -->
 													<!-- <button class="btn btn-primary"> -->
 													<center>
-											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
+											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-success btn-xs">Details</button></a>
 										
 											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
-											<a href='index.php?page=beli'><button class="btn btn-primary btn-xs">Restok</button></i></a>
+											<a href='fungsi/tambah/tambah.php?beli=beli&id=<?php echo $isi['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $isi['id_supplier']?>'><button class="btn btn-primary btn-xs">Restok</button></i></a>
 											</center>
 													
 													<!-- <p> Silahkan melakukan pembelian sepatu <br> Pada halaman Transaksi Beli </p> -->
@@ -126,7 +126,7 @@
 												<!-- </form> -->
 											<?php }else{?>
 											<center>
-											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
+											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-success btn-xs">Details</button></a>
 										
 											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
