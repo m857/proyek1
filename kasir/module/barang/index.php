@@ -61,7 +61,7 @@
 										<th>ID Sepatu</th>
 										<!-- <th>Nama Supplier</th> -->
 										<th>Nama Sepatu</th>
-										<!-- <th>Merk</th> -->
+										<th>Ukuran</th>
 										<th>Stok</th>
 										<!-- <th>Harga Beli</th> -->
 										<th>Harga Jual</th>
@@ -84,7 +84,7 @@
 										<td><?php echo $isi['id_barang'];?></td>
 										<!-- <td><?php //echo $isi['nama_supplier'];?></td> -->
 										<td><?php echo $isi['nama_barang'];?></td>
-										<!-- <td><?php //echo $isi['merk'];?></td> -->
+										<td><?php echo $isi['ukuran'];?></td>
 										<td>
 											<?php if($isi['stok'] == '0'){?>
 												<button class="btn btn-danger"> Kosong </button>
@@ -131,11 +131,11 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total </td>
+										<th colspan="4">Total </td>
 										<th><?php echo $totalStok;?></td>
 										
-										<th>Rp.<?php echo number_format($totalJual);?>,-</td>
-										<th colspan="2" style="background:#ddd"></th>
+										
+										<th colspan="3" ></th>
 									</tr>
 								</tfoot>
 							</table>

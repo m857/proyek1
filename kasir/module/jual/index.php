@@ -170,21 +170,25 @@
 													<input type="hidden" name="periode[]" value="<?php echo date('m-Y');?>">
 												<?php $no++; }?>
 												<tr>
+												<td colspan="1"><b>Nama Pelanggan</b></td>
+												<td colspan="4"><input type="text" class="form-control " required name="nampel"></td>
+												</tr>
+												<tr>
 													<td>Total Semua  </td>
-													<td><input type="text" class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
+													<td><input type="text" readonly class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
 													<?php  if(empty($_GET['nota'])) {?>
 													<td>Bayar  </td>
 													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button><?php }?></td>
+													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button></td><?php }?>
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>">
-													<td> <a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
-														<b>RESET</b></a></td><?php }?></td>
+													<td>Bayar  </td>
+														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
+													<td> </td><?php }?>
 												</tr>
 											</form>
 											<tr>
 												<td>Kembali</td>
-												<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
+												<td><input type="text" readonly class="form-control" value="<?php echo $hitung;?>"></td>
 												<td></td>
 												<td>
 													<a href="print.php?nm_member=<?php echo $_SESSION['kasir']['nm_member'];?>
@@ -196,13 +200,13 @@
 											<td></td>
 											</tr>
 											<tr>
-											<td>
+											
 												<?php if(!empty($_GET['nota'] == 'yes')){?>
 												<div class="alert alert-success">
 													<p>Belanjaan berhasil dibayar !</p>
 												</div>
 												<?php }?>
-											</td>
+											
 											</tr>
 										</table>
 										<br/>

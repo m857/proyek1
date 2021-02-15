@@ -21,6 +21,7 @@
 						<p><?php echo $toko['alamat_toko'];?></p>
 						<p>Tanggal : <?php  echo date("j F Y, G:i");?></p>
 						<p>Kasir : <?php  echo $_GET['nm_member'];?></p>
+						<p>Nama Pelanggan : <?php  echo $_GET['nampel'];?></p>
 					</center>
 					<table class="table table-bordered" style="width:100%;">
 						<tr>
@@ -48,7 +49,7 @@
 					</div>
 					<div class="clearfix"></div>
 					<center>
-						<p>Terima Kasih Telah berbelanja di toko kami !</p>
+						<p>Terima Kasih <?= $_GET['nampel']; ?> Telah berbelanja di toko kami !</p>
 					</center>
 				</div>
 				<div class="col-sm-4"></div>

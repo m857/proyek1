@@ -121,6 +121,7 @@
 														$jumlah = $_POST['jumlah'];
 														$total = $_POST['total1'];
 														$tgl_input = $_POST['tgl_input'];
+														$nampel = $_POST['nampel'];
 														$periode = $_POST['periode'];
 														$jumlah_dipilih = count($id_barang);
 														
@@ -166,25 +167,29 @@
 													<input type="hidden" name="periode[]" value="<?php echo date('m-Y');?>">
 												<?php $no++; }?>
 												<tr>
+												<td colspan="1">Nama Pelanggan</td>
+												<td colspan="4"><input type="text" class="form-control " required name="nampel" value="<?php echo $nampel;?>" ></td>
+												</tr>
+												<tr>
 													<td>Total Semua  </td>
-													<td><input type="text" class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
+													<td><input type="text" readonly class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
 													<?php  if(empty($_GET['nota'])) {?>
 													<td>Bayar  </td>
 													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button><?php }?></td>
+													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button></td><?php }?>
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>">
-													<td><a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
-														<b>RESET</b></a></td><?php }?></td>
+													<td>Bayar  </td>
+														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
+													<td></td><?php }?></td>
 												</tr>
 											</form>
 											<tr>
 												<td>Kembali</td>
-												<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
+												<td><input type="text" readonly class="form-control" value="<?php echo $hitung;?>"></td>
 												<td></td>
 												<td>
 													<a href="print.php?nm_member=<?php echo $_SESSION['admin sistem']['nm_member'];?>
-													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
+													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>&nampel=<?php echo $nampel;?>" target="_blank">
 													<button class="btn btn-default">
 														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
 													</button></a>
@@ -192,13 +197,13 @@
 
 											</tr>
 											<tr>
-											<td>
+											
 												<?php if(!empty($_GET['nota'] == 'yes')){?>
 												<div class="alert alert-success">
 													<p>Belanjaan berhasil dibayar !</p>
 												</div>
 												<?php }?>
-											</td>
+											
 											</tr>
 										</table>
 										

@@ -70,7 +70,7 @@
 										<th>ID Sepatu</th>
 										<!-- <th>Nama Supplier</th> -->
 										<th>Nama Sepatu</th>
-										<!-- <th>Merk</th> -->
+										<th>Ukuran</th>
 										<th>Stok</th>
 										<th>Harga Beli</th>
 										<th>Harga Jual</th>
@@ -93,7 +93,7 @@
 										<td><?php echo $isi['id_barang'];?></td>
 										<!-- <td><?php //echo $isi['nama_supplier'];?></td> -->
 										<td><?php echo $isi['nama_barang'];?></td>
-										<!-- <td><?php //echo $isi['merk'];?></td> -->
+										<td><?php echo $isi['ukuran'];?></td>
 										<td>
 											<?php if($isi['stok'] == '0'){?>
 												<button class="btn btn-danger"> Kosong </button>
@@ -127,7 +127,6 @@
 											<?php }else{?>
 											<center>
 											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-success btn-xs">Details</button></a>
-										
 											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
 											</center>
@@ -145,7 +144,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total </td>
+										<th colspan="4">Total </td>
 										<th><?php echo $totalStok;?></td>
 										<th>Rp.<?php echo number_format($totalBeli);?>,-</td>
 										<th>Rp.<?php echo number_format($totalJual);?>,-</td>

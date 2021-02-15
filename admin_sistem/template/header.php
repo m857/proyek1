@@ -30,6 +30,11 @@
 		.header{background:#2aa7e2; color:#fff;}
 		#main-content{ background:#ebf9fb;}
     #hidden {display:none}
+/* .header{background: #000;} */
+/* .black-bg{border-bottom:1px solid red;} */
+    /* .green-panel {background: #000;} */
+    /* .calendar-month-header {background: red;} */
+    #my
     /* #sidebar{background: #2aa7e2;} */
 	</style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,7 +49,7 @@
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
       <!--header start-->
-      <header class="header black-bg">
+      <header class="header">
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>

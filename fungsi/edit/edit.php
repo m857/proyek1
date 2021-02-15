@@ -52,6 +52,13 @@ if(!empty($_SESSION['admin sistem'])){
 
 	if(!empty($_GET['barang'])){
 		$id = htmlentities($_POST['id']);
+
+		$dataS[] = $id;
+		$sqlS = 'select*from barang WHERE id_barang=?';
+		$rowS = $config -> prepare($sqlS);
+		$rowS -> execute($dataS);
+		$hasil = $rowS -> fetch();
+
 		$kategori = htmlentities($_POST['kategori']);
 		$nama = htmlentities($_POST['nama']);
 		$merk = htmlentities($_POST['merk']);
@@ -59,9 +66,11 @@ if(!empty($_SESSION['admin sistem'])){
 		$beli = htmlentities($_POST['beli']);
 		$jual = htmlentities($_POST['jual']);
 		$satuan = htmlentities($_POST['satuan']);
-		$stok = htmlentities($_POST['stok']);
+		$stok_kel = htmlentities($_POST['stok_kel']) + htmlentities($hasil['stok_kel']);
+		$stok = htmlentities($_POST['stok']) - htmlentities($_POST['stok_kel']) ;
 		$ukuran = htmlentities($_POST['ukuran']);
 		$tgl = htmlentities($_POST['tgl']);
+		$ket = htmlentities($_POST['ket']);
 		
 		$data[] = $kategori;
 		$data[] = $nama;
@@ -73,9 +82,11 @@ if(!empty($_SESSION['admin sistem'])){
 		$data[] = $stok;
 		$data[] = $ukuran;
 		$data[] = $tgl;
+		$data[] = $ket;
+		$data[] = $stok_kel;
 		$data[] = $id;
 		$sql = 'UPDATE barang SET id_kategori=?, nama_barang=?, merk=?, id_supplier=?,
-				harga_beli=?, harga_jual=?, satuan_barang=?, stok=?, ukuran=?, tgl_update=?  WHERE id_barang=?';
+				harga_beli=?, harga_jual=?, satuan_barang=?, stok=?, ukuran=?, tgl_update=?, ket=?, stok_kel=?  WHERE id_barang=?';
 		$row = $config -> prepare($sql);
 		$row -> execute($data);
 		echo '<script>window.location="../../index.php?page=barang/edit&barang='.$id.'&success=edit-data"</script>';
@@ -238,7 +249,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
-				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>" 
+				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&hrg=<?php echo $hasil['harga_jual'];?>" 
 					class="btn btn-success">
 					<i class="fa fa-shopping-cart"></i></a></td>
 			</tr>
@@ -310,7 +321,7 @@ if(!empty($_SESSION['admin sistem'])){
 				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_beli'];?></td>
 				<td>
-				<a href="fungsi/tambah/tambah.php?beli=beli&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $hasil['id_supplier']?>" 
+				<a href="fungsi/tambah/tambah.php?beli=beli&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $hasil['id_supplier']?>&hrg=<?php echo $hasil['harga_beli'];?>" 
 					class="btn btn-success">
 					<i class="fa fa-shopping-cart"></i></a></td>
 			</tr>
@@ -538,7 +549,7 @@ else if(!empty($_SESSION['kasir'])){
 				<td><?php echo $hasil['ukuran'];?></td>
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
-				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['kasir']['id_member'];?>" 
+				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['kasir']['id_member'];?>&hrg=<?php echo $hasil['harga_jual'];?>" 
 					class="btn btn-success">
 					<i class="fa fa-shopping-cart"></i></a></td>
 			</tr>

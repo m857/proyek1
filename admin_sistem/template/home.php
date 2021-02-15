@@ -24,7 +24,7 @@
 							echo "
 							<div class='alert alert-warning'>
 								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								<span class='pull-right'><a href='index.php?page=beli'>Transaksi Pembelian <i class='fa fa-angle-double-right'></i></a></span>
+								<span class='pull-right'><a href='fungsi/tambah/tambah.php?beli=beli&id=".$q['id_barang']."&id_kasir=".$_SESSION['admin sistem']['id_member']."&ids=".$q['id_supplier']."'>Transaksi Pembelian <i class='fa fa-angle-double-right'></i></a></span>
 							</div>
 							";	
 						}

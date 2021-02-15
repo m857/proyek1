@@ -30,6 +30,7 @@
 							<p>Hapus Data Berhasil !</p>
 						</div>
 						<?php }?>
+						<div class="container">
 						<table class="table table-striped">
 								<tr>
 									<td>ID Sepatu</td>
@@ -79,7 +80,14 @@
 									<td>Tanggal Update</td>
 									<td><?php echo $hasil['tgl_update'];?></td>
 								</tr>
+								<tr>
+									<td>Keterangan</td>
+									<td><?php if($hasil['stok_kel'] > 0){?>Terjadi Perubahan Stok Sebanyak <?= $hasil['stok_kel']; ?> dikarenakan  <?= $hasil['ket']; ?><?php }else{echo "Tidak Ada Perubahan Stok";}?></td>
+								</tr>
 						</table>
+						</div>
+							
+
 						<div class="clearfix" style="padding-top:16%;"></div>
 				  </div>
               </div>

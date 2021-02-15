@@ -6,6 +6,7 @@
       <!--main content start-->
 <?php 
 	$id = $_GET['barang'];
+	
 	$hasil = $lihat -> barang_edit($id);
 ?>
       <section id="main-content">
@@ -25,6 +26,7 @@
 							<p>Hapus Data Berhasil !</p>
 						</div>
 						<?php }?>
+						
 						<table class="table table-striped">
 							<form action="fungsi/edit/edit.php?barang=edit" method="POST">
 								<tr>
@@ -86,6 +88,14 @@
 									<td><input type="number" readonly class="form-control" value="<?php echo $hasil['stok'];?>" name="stok"></td>
 								</tr>
 								<tr>
+									<td>Stok Keluar</td>
+									<td><input type="number" class="form-control"  name="stok_kel" placeholder="Stok Keluar"></td>
+								</tr>
+								<tr>
+									<td>Keterangan Perubahan Stok</td>
+									<td><input type="text" class="form-control"  name="ket" placeholder="Keterangan"></td>
+								</tr>
+								<tr>
 									<td>Ukuran Sepatu</td>
 									<td><input type="number" class="form-control" value="<?php echo $hasil['ukuran'];?>" name="ukuran"></td>
 								</tr>
@@ -99,6 +109,7 @@
 								</tr>
 							</form>
 						</table>
+						<?= $stok_kel?>
 						<div class="clearfix" style="padding-top:16%;"></div>
 				  </div>
               </div>

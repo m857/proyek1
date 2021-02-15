@@ -61,8 +61,8 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 	if(!empty($_GET['jual'])){
 		$id = $_GET['id'];
 		$kasir =  $_GET['id_kasir'];
-		$jumlah = '0';
-		$total = '0';
+		$jumlah = '1';
+		$total = $_GET['hrg'];
 		$tgl = date("j F Y, G:i");
 		
 		$data1[] = $id;
@@ -78,8 +78,8 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 	if(!empty($_GET['beli'])){
 		$id = $_GET['id'];
 		$kasir =  $_GET['id_kasir'];
-		$jumlah = '0';
-		$total = '0';
+		$jumlah = '1';
+		$total = $_GET['hrg'];
 		$tgl = date("j F Y, G:i");
 		$ids =  $_GET['ids'];
 		

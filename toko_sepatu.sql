@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jan 2021 pada 04.43
+-- Waktu pembuatan: 15 Feb 2021 pada 03.01
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -40,17 +40,19 @@ CREATE TABLE `barang` (
   `tgl_input` varchar(255) NOT NULL,
   `tgl_update` varchar(255) DEFAULT NULL,
   `ukuran` varchar(10) NOT NULL,
-  `id_supplier` int(11) NOT NULL
+  `id_supplier` int(11) NOT NULL,
+  `ket` text DEFAULT NULL,
+  `stok_kel` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`, `tgl_update`, `ukuran`, `id_supplier`) VALUES
-(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '10', '9 January 2021, 11:29', NULL, '38', 1),
-(5, 'SPT002', 2, 'Boots', 'AP Boots', '100000', '130000', 'Pasang', '16', '11 January 2021, 12:50', '22 January 2021, 14:07', '40', 2),
-(9, 'SPT003', 1, 'Flat Shoes', 'Bata', '100000', '120000', 'Pasang', '17', '25 January 2021, 3:39', NULL, '35', 2);
+INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`, `tgl_update`, `ukuran`, `id_supplier`, `ket`, `stok_kel`) VALUES
+(4, 'SPT001', 2, 'Futsal', 'Adidas', '150000', '165000', 'Pasang', '21', '9 January 2021, 11:29', NULL, '38', 1, NULL, NULL),
+(5, 'SPT002', 2, 'Boots', 'AP Boots', '100000', '130000', 'Pasang', '21', '11 January 2021, 12:50', '22 January 2021, 14:07', '40', 2, NULL, NULL),
+(9, 'SPT003', 1, 'Flat Shoes', 'Bata', '100000', '120000', 'Pasang', '9', '25 January 2021, 3:39', '15 February 2021, 6:42', '35', 2, 'Rusak', '10');
 
 -- --------------------------------------------------------
 
@@ -168,7 +170,37 @@ INSERT INTO `nota` (`id_nota`, `id_barang`, `id_member`, `jumlah`, `total`, `tan
 (39, 'SPT001', 2, '1', '165000', '25 January 2021, 11:02', '01-2021'),
 (40, 'SPT001', 1, '1', '165000', '25 January 2021, 11:11', '01-2021'),
 (41, 'SPT001', 1, '1', '165000', '25 January 2021, 11:11', '01-2021'),
-(42, 'SPT001', 1, '3', '495000', '25 January 2021, 11:14', '01-2021');
+(42, 'SPT001', 1, '3', '495000', '25 January 2021, 11:14', '01-2021'),
+(43, 'SPT001', 1, '1', '165000', '27 January 2021, 6:00', '01-2021'),
+(44, 'SPT001', 1, '2', '330000', '27 January 2021, 6:08', '01-2021'),
+(45, 'SPT003', 1, '2', '240000', '27 January 2021, 7:01', '01-2021'),
+(46, 'SPT002', 2, '2', '260000', '27 January 2021, 7:05', '01-2021'),
+(47, 'SPT001', 1, '1', '165000', '28 January 2021, 5:55', '01-2021'),
+(48, 'SPT002', 1, '1', '130000', '28 January 2021, 5:55', '01-2021'),
+(93, 'SPT001', 1, '1', '165000', '28 January 2021, 5:55', '0'),
+(94, 'SPT002', 1, '1', '130000', '28 January 2021, 5:55', '0'),
+(95, 'SPT003', 1, '1', '120000', '28 January 2021, 6:13', '01-2021'),
+(96, 'SPT003', 1, '1', '120000', '28 January 2021, 6:13', '0'),
+(98, 'SPT001', 1, '1', '0', '31 January 2021, 8:36', '0'),
+(100, 'SPT001', 1, '1', '165000', '31 January 2021, 8:40', '0'),
+(101, 'SPT001', 2, '1', '165000', '31 January 2021, 8:47', '0'),
+(102, 'SPT003', 2, '1', '120000', '2 February 2021, 5:23', '0'),
+(103, 'SPT003', 2, '2', '240000', '2 February 2021, 5:28', '02-2021'),
+(104, 'SPT003', 2, '1', '120000', '2 February 2021, 5:33', '02-2021'),
+(105, 'SPT003', 2, '1', '120000', '2 February 2021, 5:34', '02-2021'),
+(106, 'SPT003', 2, '1', '120000', '2 February 2021, 5:40', '02-2021'),
+(107, 'SPT002', 2, '1', '130000', '2 February 2021, 5:42', '02-2021'),
+(108, 'SPT001', 2, '1', '165000', '2 February 2021, 5:44', '02-2021'),
+(109, 'SPT001', 2, '1', '165000', '2 February 2021, 5:46', '0'),
+(110, 'SPT001', 2, '1', '165000', '2 February 2021, 5:49', '02-2021'),
+(111, 'SPT001', 2, '1', '165000', '2 February 2021, 5:58', '02-2021'),
+(112, 'SPT001', 2, '1', '165000', '2 February 2021, 5:59', '02-2021'),
+(113, 'SPT001', 2, '1', '165000', '2 February 2021, 6:02', '02-2021'),
+(114, 'SPT001', 2, '1', '165000', '2 February 2021, 6:04', '02-2021'),
+(115, 'SPT001', 1, '1', '165000', '2 February 2021, 6:05', '02-2021'),
+(116, 'SPT001', 1, '1', '165000', '2 February 2021, 6:11', '02-2021'),
+(117, 'SPT001', 2, '3', '495000', '2 February 2021, 12:41', '02-2021'),
+(118, 'SPT003', 1, '1', '120000', '15 February 2021, 8:14', '02-2021');
 
 -- --------------------------------------------------------
 
@@ -201,7 +233,54 @@ INSERT INTO `nota_pembelian` (`id_nota_pembelian`, `id_barang`, `id_member`, `ju
 (71, 'SPT003', 1, '5', '500000', '25 January 2021, 4:45', '01-2021'),
 (72, 'SPT003', 1, '5', '500000', '25 January 2021, 4:47', '01-2021'),
 (73, 'SPT003', 1, '5', '500000', '25 January 2021, 4:47', '2'),
-(74, 'SPT003', 1, '2', '200000', '25 January 2021, 5:21', '01-2021');
+(74, 'SPT003', 1, '2', '200000', '25 January 2021, 5:21', '01-2021'),
+(75, 'SPT001', 1, '1', '150000', '27 January 2021, 5:34', '01-2021'),
+(76, 'SPT001', 1, '1', '150000', '27 January 2021, 5:36', '01-2021'),
+(77, 'SPT003', 1, '2', '200000', '27 January 2021, 5:39', '01-2021'),
+(78, 'SPT001', 1, '1', '150000', '27 January 2021, 5:41', '01-2021'),
+(79, 'SPT001', 1, '1', '150000', '27 January 2021, 5:42', '01-2021'),
+(80, 'SPT001', 1, '1', '150000', '27 January 2021, 5:45', '01-2021'),
+(81, 'SPT001', 1, '1', '150000', '27 January 2021, 5:46', '01-2021'),
+(82, 'SPT001', 1, '1', '150000', '27 January 2021, 5:47', '01-2021'),
+(83, 'SPT001', 1, '1', '150000', '27 January 2021, 5:54', '01-2021'),
+(84, 'SPT003', 1, '1', '100000', '27 January 2021, 5:55', '01-2021'),
+(85, 'SPT001', 1, '1', '150000', '27 January 2021, 5:56', '01-2021'),
+(86, 'SPT001', 1, '1', '150000', '27 January 2021, 5:58', '01-2021'),
+(87, 'SPT001', 1, '1', '150000', '27 January 2021, 6:00', '01-2021'),
+(88, 'SPT001', 1, '1', '150000', '27 January 2021, 6:02', '01-2021'),
+(89, 'SPT003', 1, '1', '100000', '27 January 2021, 6:03', '01-2021'),
+(90, 'SPT001', 1, '1', '150000', '27 January 2021, 6:03', '01-2021'),
+(91, 'SPT003', 1, '0', '0', '27 January 2021, 6:04', '2'),
+(92, 'SPT003', 1, '1', '100000', '27 January 2021, 6:06', '01-2021'),
+(93, 'SPT001', 1, '1', '150000', '27 January 2021, 6:10', '01-2021'),
+(94, 'SPT001', 1, '1', '150000', '27 January 2021, 6:14', '01-2021'),
+(95, 'SPT001', 1, '1', '150000', '27 January 2021, 6:15', '01-2021'),
+(96, 'SPT001', 1, '1', '150000', '27 January 2021, 6:16', '01-2021'),
+(97, 'SPT001', 1, '1', '150000', '27 January 2021, 6:29', '01-2021'),
+(98, 'SPT003', 1, '1', '100000', '27 January 2021, 6:30', '01-2021'),
+(99, 'SPT003', 1, '1', '100000', '27 January 2021, 6:31', '01-2021'),
+(100, 'SPT003', 1, '1', '100000', '27 January 2021, 6:32', '01-2021'),
+(101, 'SPT002', 1, '1', '100000', '27 January 2021, 6:33', '01-2021'),
+(102, 'SPT002', 1, '1', '100000', '27 January 2021, 6:35', '01-2021'),
+(103, 'SPT002', 1, '2', '200000', '27 January 2021, 6:35', '01-2021'),
+(104, 'SPT003', 1, '2', '200000', '27 January 2021, 6:36', '01-2021'),
+(105, 'SPT002', 1, '1', '100000', '27 January 2021, 6:37', '01-2021'),
+(106, 'SPT002', 1, '1', '100000', '27 January 2021, 6:38', '01-2021'),
+(107, 'SPT002', 1, '2', '200000', '27 January 2021, 7:03', '01-2021'),
+(109, 'SPT001', 1, '1', '0', '31 January 2021, 8:41', '1'),
+(110, 'SPT001', 1, '1', '165000', '31 January 2021, 8:42', '01-2021'),
+(111, 'SPT001', 1, '1', '165000', '31 January 2021, 8:42', '01-2021'),
+(112, 'SPT001', 1, '1', '165000', '31 January 2021, 8:43', '01-2021'),
+(113, 'SPT001', 1, '1', '165000', '31 January 2021, 8:43', '01-2021'),
+(114, 'SPT001', 1, '1', '150000', '31 January 2021, 8:48', '1'),
+(115, 'SPT001', 1, '1', '150000', '2 February 2021, 6:14', '02-2021'),
+(116, 'SPT001', 1, '1', '150000', '2 February 2021, 6:15', '02-2021'),
+(117, 'SPT001', 1, '1', '150000', '2 February 2021, 6:18', '02-2021'),
+(118, 'SPT001', 1, '1', '150000', '2 February 2021, 6:28', '1'),
+(119, 'SPT003', 1, '1', '100000', '2 February 2021, 12:55', '02-2021'),
+(120, 'SPT001', 1, '1', '150000', '2 February 2021, 12:57', '02-2021'),
+(121, 'SPT002', 1, '1', '100000', '2 February 2021, 12:58', '02-2021'),
+(122, 'SPT003', 1, '5', '500000', '15 February 2021, 5:28', '02-2021');
 
 -- --------------------------------------------------------
 
@@ -231,8 +310,16 @@ CREATE TABLE `penjualan` (
   `id_member` int(11) NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
-  `tanggal_input` varchar(255) NOT NULL
+  `tanggal_input` varchar(255) NOT NULL,
+  `id_nota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `id_barang`, `id_member`, `jumlah`, `total`, `tanggal_input`, `id_nota`) VALUES
+(118, 'SPT003', 1, '1', '120000', '15 February 2021, 8:14', 0);
 
 -- --------------------------------------------------------
 
@@ -376,7 +463,7 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -400,25 +487,25 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT untuk tabel `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT untuk tabel `nota_pembelian`
 --
 ALTER TABLE `nota_pembelian`
-  MODIFY `id_nota_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_nota_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`

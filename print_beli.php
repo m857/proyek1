@@ -21,7 +21,7 @@
 						<p><?php echo $toko['alamat_toko'];?></p>
 						<p>Tanggal : <?php  echo date("j F Y, G:i");?></p>
 						<p>Kasir : <?php  echo $_GET['nm_member'];?></p>
-						<p>Nama Supplier : <?php foreach($hsl as $sup){echo $sup['nama_supplier'];}?></p>
+						<p>Nama Supplier : <?php foreach($hsl as $sup){echo $sup['nama_supplier']; echo ", ";}?></p>
 					</center>
 					<table class="table table-bordered" style="width:100%;">
 						<tr>
