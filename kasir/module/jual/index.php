@@ -121,6 +121,7 @@
 													if($bayar >= $total)
 													{
 														$id_barang = $_POST['id_barang'];
+														$id_member = $_POST['nampel'];
 														$id_member = $_POST['id_member'];
 														$jumlah = $_POST['jumlah'];
 														$total = $_POST['total1'];
@@ -171,7 +172,7 @@
 												<?php $no++; }?>
 												<tr>
 												<td colspan="1"><b>Nama Pelanggan</b></td>
-												<td colspan="4"><input type="text" class="form-control " required name="nampel"></td>
+												<td colspan="4"><input type="text" class="form-control " required name="nampel" value="<?php echo $nampel;?>"></td>
 												</tr>
 												<tr>
 													<td>Total Semua  </td>
@@ -192,7 +193,7 @@
 												<td></td>
 												<td>
 													<a href="print.php?nm_member=<?php echo $_SESSION['kasir']['nm_member'];?>
-													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
+													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>&nampel=<?php echo $nampel;?>" target="_blank">
 													<button class="btn btn-default">
 														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
 													</button></a>
