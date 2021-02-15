@@ -121,7 +121,7 @@
 													if($bayar >= $total)
 													{
 														$id_barang = $_POST['id_barang'];
-														$id_member = $_POST['nampel'];
+														$nampel = $_POST['nampel'];
 														$id_member = $_POST['id_member'];
 														$jumlah = $_POST['jumlah'];
 														$total = $_POST['total1'];
