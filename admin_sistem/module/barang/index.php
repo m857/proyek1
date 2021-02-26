@@ -27,28 +27,12 @@
 						</div>
 						<?php }?>
 						
-						<?php 
-							$sql1=" select * from barang where stok <= 3";
-							$row1 = $config -> prepare($sql1);
-							$row1 -> execute();
-							$r = $row1 -> fetchAll();
-							foreach($r as $q) {
-						?>	
-						<?php
-								echo "
-								<div class='alert alert-warning'>
-								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								
-							</div>
-								";	
-							}
 						
-						?>
 					
 						<?php
 								echo "
 								<div class='alert alert-warning'>
-									<span class='glyphicon glyphicon-info-sign'></span> Hati Hati dalam <a style='color:red'> Hapus Data Sepatu </a> karena dapat berpengaruh dalam laporan !!
+									<span class='glyphicon glyphicon-info-sign'></span> Hati Hati dalam <a style='color:red'> Hapus dan Edit Data Sepatu </a> karena dapat berpengaruh dalam laporan !!
 								</div>
 								";	
 							
@@ -70,8 +54,8 @@
 										<th>ID Sepatu</th>
 										<!-- <th>Nama Supplier</th> -->
 										<th>Nama Sepatu</th>
-										<th>Ukuran</th>
-										<th>Stok</th>
+										<th>Nama Supplier</th>
+										
 										<th>Harga Beli</th>
 										<th>Harga Jual</th>
 										<!-- <th>Satuan</th> -->
@@ -93,44 +77,23 @@
 										<td><?php echo $isi['id_barang'];?></td>
 										<!-- <td><?php //echo $isi['nama_supplier'];?></td> -->
 										<td><?php echo $isi['nama_barang'];?></td>
-										<td><?php echo $isi['ukuran'];?></td>
-										<td>
-											<?php if($isi['stok'] == '0'){?>
-												<button class="btn btn-danger"> Kosong </button>
-											<?php }else{?>
-												<?php echo $isi['stok'];?>
-											<?php }?>
-										</td>
+										<td><?php echo $isi['nama_supplier'];?></td>
+										
+										<!-- engga guna -->
+									
+
 										<td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
 										<td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
-										<!-- <td> <?php //echo $isi['satuan_barang'];?></td> -->
 										<td>
 											
 											
-											<?php if($isi['stok'] <=  '3'){?>
-												<!-- <form method="POST" action="admin_sistem/module/jual/index.php?id=<?php //echo $_SESSION['admin sistem']['id_member'];?>"> -->
-													<!-- <input type="text" name="restok" class="form-control"> -->
-													<!-- <input type="hidden" name="id" value="<?php //echo $isi['id_barang'];?>" class="form-control"> -->
-													<!-- <button class="btn btn-primary"> -->
-													<center>
-											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-success btn-xs">Details</button></a>
 										
-											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
-											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
-											<a href='fungsi/tambah/tambah.php?beli=beli&id=<?php echo $isi['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $isi['id_supplier']?>'><button class="btn btn-primary btn-xs">Restok</button></i></a>
-											</center>
-													
-													<!-- <p> Silahkan melakukan pembelian sepatu <br> Pada halaman Transaksi Beli </p> -->
-													
-													<!-- </button> -->
-												<!-- </form> -->
-											<?php }else{?>
 											<center>
 											<a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-success btn-xs">Details</button></a>
 											<a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>" onclick="javascript:return confirm('Hapus Data barang ?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
 											</center>
-											<?php }?>
+										</td>
 											
 											
 									</tr>
@@ -142,15 +105,7 @@
 									}
 								?>
 								</tbody>
-								<tfoot>
-									<tr>
-										<th colspan="4">Total </td>
-										<th><?php echo $totalStok;?></td>
-										<th>Rp.<?php echo number_format($totalBeli);?>,-</td>
-										<th>Rp.<?php echo number_format($totalJual);?>,-</td>
-										<th colspan="2" style="background:#ddd"></th>
-									</tr>
-								</tfoot>
+								
 							</table>
 						</div>
 						<div class="clearfix" style="margin-top:7pc;"></div>
@@ -179,6 +134,17 @@
 												<td><input type="text" readonly="readonly" required value="<?php echo $format;?>" class="form-control"  name="id"></td>
 											</tr>
 											<tr>
+												<td>Nama Supplier</td>
+												<td>
+												<select name="namsup" class="form-control" required>
+													<option value="#">Pilih Supplier</option>
+													<?php  $sup = $lihat -> supplier(); foreach($sup as $isi){ 	?>
+													<option value="<?php echo $isi['id_supplier'];?>"><?php echo $isi['nama_supplier'];?></option>
+													<?php }?>
+												</select>
+												</td>
+											</tr>
+											<tr>
 												<td>Kategori</td>
 												<td>
 												<select name="kategori" class="form-control" required>
@@ -194,17 +160,6 @@
 												<td><input type="text" placeholder="Nama Barang" required class="form-control" name="nama"></td>
 											</tr>
 											<tr>
-												<td>Nama Supplier</td>
-												<td>
-												<select name="namsup" class="form-control" required>
-													<option value="#">Pilih Supplier</option>
-													<?php  $sup = $lihat -> supplier(); foreach($sup as $isi){ 	?>
-													<option value="<?php echo $isi['id_supplier'];?>"><?php echo $isi['nama_supplier'];?></option>
-													<?php }?>
-												</select>
-												</td>
-											</tr>
-											<tr>
 												<td>Merk Sepatu</td>
 												<td><input type="text" placeholder="Merk Barang" required class="form-control"  name="merk"></td>
 											</tr>
@@ -214,7 +169,14 @@
 											</tr>
 											<tr>
 												<td>Harga Jual</td>
-												<td><input type="number" placeholder="Harga Jual" required class="form-control"  name="jual"></td>
+												<td>
+												<select name="untung" class="form-control" required>
+												<option value="#">Pilih Total Keuntungan</option>
+												<option value="5">Keuntungan 5%</option>
+												<option value="10">Keuntungan 10%</option>
+												<option value="15">Keuntungan 15%</option>
+												</select>
+												</td>
 											</tr>
 											<tr>
 												<td>Satuan Sepatu</td>
@@ -224,14 +186,6 @@
 														<option value="Pasang">Pasang</option>
 													</select>
 												</td>
-											</tr>
-											<tr>
-												<td>Stok</td>
-												<td><input type="number" class="form-control" readonly="readonly" value="0"  name="stok"></td>
-											</tr>
-											<tr>
-												<td>Ukuran Sepatu</td>
-												<td><input type="number" required Placeholder="Ukuran" class="form-control"  name="ukuran"></td>
 											</tr>
 											<tr>
 												<td>Tanggal Input</td>

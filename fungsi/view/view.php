@@ -51,6 +51,18 @@
 				return $hasil;
 			}
 			
+			function ukuran(){
+				$sql = "select barang.*, ukuran.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+						from ukuran inner join barang on ukuran.id_barang = barang.id_barang
+						inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier
+						ORDER BY id_ukuran DESC";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
+			
 			function supplier(){
 				$sql = "SELECT * FROM supplier";
 				$row = $this-> db -> prepare($sql);
@@ -72,6 +84,18 @@
 				return $hasil;
 			}
 			
+			function ukuran_edit($id){
+				$sql = "select barang.*, ukuran.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+						from ukuran inner join barang on ukuran.id_barang = barang.id_barang
+						inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier 
+						where id_ukuran=?";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute(array($id));
+				$hasil = $row -> fetch();
+				return $hasil;
+			}
+			
 			function supplier_edit($id){
 				$sql = "SELECT * FROM supplier WHERE id_supplier=?";
 				$row = $this-> db -> prepare($sql);
@@ -84,6 +108,18 @@
 				$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori
 						from barang inner join kategori on barang.id_kategori = kategori.id_kategori
 						where id_barang like '%$cari%' or nama_barang like '%$cari%' or merk like '%$cari%'";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
+
+			function ukuran_cari($cari){
+				$sql = "select barang.*, ukuran.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+						from ukuran inner join barang on ukuran.id_barang = barang.id_barang
+						inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier
+						where id_barang like '%$cari%' or nama_barang like '%$cari%' or merk like '%$cari%' or ukuran2 like '%$cari%'";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
 				$hasil = $row -> fetchAll();
@@ -173,10 +209,11 @@
 			}
 
 			function jual(){
-				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member,
+				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member, ukuran.ukuran2, ukuran.id_ukuran,
 						member.nm_member from nota 
 					   left join barang on barang.id_barang=nota.id_barang 
-					   left join member on member.id_member=nota.id_member 
+					   left join member on member.id_member=nota.id_member
+					   left join ukuran on ukuran.id_ukuran=nota.id_ukuran 
 					   ORDER BY id_nota DESC";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
@@ -185,11 +222,13 @@
 			}
 			
 			function beli(){
-				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
-						member.nm_member from nota_pembelian
-					   left join barang on barang.id_barang=nota_pembelian.id_barang 
-					   left join member on member.id_member=nota_pembelian.id_member 
-					   ORDER BY id_nota_pembelian DESC";
+				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member, ukuran.ukuran2, ukuran.id_ukuran,
+						member.nm_member,supplier.id_supplier, supplier.nama_supplier  from nota_pembelian
+					   	left join barang on barang.id_barang=nota_pembelian.id_barang 
+					   	left join member on member.id_member=nota_pembelian.id_member 
+						left join ukuran on ukuran.id_ukuran=nota_pembelian.id_ukuran 
+						left join supplier on supplier.id_supplier=nota_pembelian.id_supplier 
+					   	ORDER BY id_nota_pembelian DESC";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
 				$hasil = $row -> fetchAll();
@@ -197,10 +236,13 @@
 			}
 			
 			function periode_beli($periode){
-				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
-						member.nm_member from nota_pembelian 
+				$sql ="SELECT nota_pembelian.* , barang.id_barang, barang.nama_barang, member.id_member, ukuran.ukuran2, ukuran.id_ukuran,
+						member.nm_member,supplier.id_supplier, supplier.nama_supplier from nota_pembelian 
 					   left join barang on barang.id_barang=nota_pembelian.id_barang 
-					   left join member on member.id_member=nota_pembelian.id_member WHERE nota_pembelian.periode = ?";
+					   left join member on member.id_member=nota_pembelian.id_member 
+					   left join ukuran on ukuran.id_ukuran=nota_pembelian.id_ukuran  
+					   left join supplier on supplier.id_supplier=nota_pembelian.id_supplier 
+					   WHERE nota_pembelian.periode = ?";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute(array($periode));
 				$hasil = $row -> fetchAll();
@@ -208,10 +250,12 @@
 			}
 
 			function periode_jual($periode){
-				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member,
+				$sql ="SELECT nota.* , barang.id_barang, barang.nama_barang, member.id_member, ukuran.ukuran2, ukuran.id_ukuran,
 						member.nm_member from nota 
-					   left join barang on barang.id_barang=nota.id_barang 
-					   left join member on member.id_member=nota.id_member WHERE nota.periode = ?";
+						left join barang on barang.id_barang=nota.id_barang 
+						left join member on member.id_member=nota.id_member
+						left join ukuran on ukuran.id_ukuran=nota.id_ukuran  
+					   WHERE nota.periode = ?";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute(array($periode));
 				$hasil = $row -> fetchAll();
@@ -220,10 +264,13 @@
 
 
 			function penjualan(){
-				$sql ="SELECT penjualan.* , barang.id_barang, barang.nama_barang, member.id_member,
+				$sql ="SELECT penjualan.* , barang.id_barang, barang.nama_barang, member.id_member, ukuran.ukuran2, ukuran.id_ukuran, 
 						member.nm_member from penjualan 
 					   left join barang on barang.id_barang=penjualan.id_barang 
 					   left join member on member.id_member=penjualan.id_member 
+					   left join ukuran on ukuran.id_ukuran=penjualan.id_ukuran 
+					  
+					  
 					   ORDER BY id_penjualan";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
@@ -233,10 +280,12 @@
 
 			function pembelian(){
 				$sql ="SELECT pembelian.* , barang.id_barang, barang.nama_barang, member.id_member,
-						member.nm_member, supplier.id_supplier, supplier.nama_supplier from pembelian 
+						member.nm_member, supplier.id_supplier, supplier.nama_supplier, ukuran.ukuran2, ukuran.id_ukuran 
+						from pembelian 
 					   left join barang on barang.id_barang=pembelian.id_barang 
 					   left join member on member.id_member=pembelian.id_member 
 					   left join supplier on supplier.id_supplier=pembelian.id_supplier 
+					   left join ukuran on ukuran.id_ukuran=pembelian.id_ukuran
 					   ORDER BY id_pembelian";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();

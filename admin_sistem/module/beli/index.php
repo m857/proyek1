@@ -53,9 +53,9 @@
 						<div class="col-sm-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h4><i class="fa fa-shopping-cart"></i> KASIR
+									<h4><i class="fa fa-shopping-cart"></i> Pembelian
 									<a class="btn btn-danger pull-right" style="margin-top:-0.5pc;" href="fungsi/hapus/hapus.php?pembelian=beli">
-										<b>RESET KERANJANG</b></a>
+										<b>RESET PEMBELIAN</b></a>
 									</h4>
 								</div>
 								<div class="panel-body">
@@ -72,9 +72,10 @@
 												<tr>
 													<td> No</td>
 													<td> Nama Sepatu</td>
+													<td> Ukuran</td>
 													<td style="width:10%;"> Jumlah</td>
 													<td style="width:20%;"> Total</td>
-													<td> Kasir</td>
+													<td> Nama Supllier</td>
 													<td> Aksi</td>
 												</tr>
 											</thead>
@@ -85,6 +86,7 @@
 												<tr>
 													<td><?php echo $no;?></td>
 													<td><?php echo $isi['nama_barang'];?></td>
+													<td><?php echo $isi['ukuran2'];?></td>
 													<td>
 														<form method="POST" action="fungsi/edit/edit.php?beli=beli">
 															<input type="number" name="jumlah" value="<?php echo $isi['jumlah'];?>" class="form-control">
@@ -92,7 +94,7 @@
 															<input type="hidden" name="id_barang" value="<?php echo $isi['id_barang'];?>" class="form-control">
 													</td>
 													<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
-													<td><?php echo $isi['nm_member'];?></td>
+													<td><?php echo $isi['nama_supplier'];?></td>
 													<td>
 															<button type="submit" class="btn btn-warning">Update</button>
 														</form>
@@ -113,13 +115,12 @@
 											if(!empty($_GET['nota'] == 'yes')) {
 												$total = $_POST['total'];
 												$bayar = $_POST['bayar'];
-												if(!empty($bayar))
-												{
-													$hitung = $bayar - $total;
-													if($bayar >= $total)
-													{
+												
+													
 														$id_barang = $_POST['id_barang'];
 														$id_member = $_POST['id_member'];
+														$id_ukuran = $_POST['id_ukuran'];
+														$id_supplier = $_POST['id_supplier'];
 														$jumlah = $_POST['jumlah'];
 														$total = $_POST['total1'];
 														$tgl_input = $_POST['tgl_input'];
@@ -129,79 +130,64 @@
 														
 														for($x=0;$x<$jumlah_dipilih;$x++){
 
-															$d = array($id_barang[$x],$id_member[$x],$jumlah[$x],$total[$x],$tgl_input[$x],$periode[$x]);
-															$sql = "INSERT INTO nota_pembelian (id_barang,id_member,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?)";
+															$d = array($id_barang[$x],$id_member[$x],$id_ukuran[$x],$id_supplier[$x],$jumlah[$x],$total[$x],$tgl_input[$x],$periode[$x]);
+															$sql = "INSERT INTO nota_pembelian (id_barang,id_member,id_ukuran,id_supplier,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?,?,?)";
 															$row = $config->prepare($sql);
 															$row->execute($d);
 															// ubah stok barang
-															$sql_barang = "SELECT * FROM barang WHERE id_barang = ?";
+															$sql_barang = "SELECT * FROM ukuran WHERE id_ukuran = ?";
 															$row_barang = $config->prepare($sql_barang);
-															$row_barang->execute(array($id_barang[$x]));
+															$row_barang->execute(array($id_ukuran[$x]));
 															$hsl = $row_barang->fetch();
 															
-															$stok = $hsl['stok'];
-															$idb  = $hsl['id_barang'];
+															$stok = $hsl['stok2'];
+															$idb  = $hsl['id_ukuran'];
 
 															$total_stok = $stok + $jumlah[$x];
-															echo $total_stok;
-															$sql_stok = "UPDATE barang SET stok = ? WHERE id_barang = ?";
+															
+															$sql_stok = "UPDATE ukuran SET stok2 = ? WHERE id_ukuran = ?";
 															$row_stok = $config->prepare($sql_stok);
 															$row_stok->execute(array($total_stok, $idb));
 															
 														}
 														echo '<script>windows.location="index.php?nm_member=<?php echo $nama;?>
 														&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>#kasirnya";</script>';
-													}else{
-														echo '<script>alert("Uang Kurang ! Rp.'.$hitung.'");</script>';
-													}
-												}
+													
 											}
 											?>
+											
 											<form method="POST" action="index.php?page=beli&nota=yes#kasirnya">
 											
 												<?php foreach($hasil_pembelian as $isi){;?>
 													<input type="hidden" name="id_barang[]" value="<?php echo $isi['id_barang'];?>">
 													<input type="hidden" name="id_member[]" value="<?php echo $isi['id_member'];?>">
+													<input type="hidden" name="id_ukuran[]" value="<?php echo $isi['id_ukuran'];?>">
+													<input type="hidden" name="id_supplier[]" value="<?php echo $isi['id_supplier'];?>">
 													<input type="hidden" name="jumlah[]" value="<?php echo $isi['jumlah'];?>">
 													<input type="hidden" name="total1[]" value="<?php echo $isi['total'];?>">
 													<input type="hidden" name="tgl_input[]" value="<?php echo $isi['tanggal_input'];?>">
 													<input type="hidden" name="periode[]" value="<?php echo date('m-Y');?>">
 												<?php $no++; }?>
-												
+
+		
+
 												<tr>
-													<td>Total Semua  </td>
-													<td><input type="text" readonly class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
+												
+													<td>Total Pembelian </td>
+													<td><input type="text" readonly class="form-control" name="total" value="Rp. <?php echo number_format($total_bayar);?>,-"></td>
 													<?php  if(empty($_GET['nota'])) {?>
-													<td>Bayar  </td>
-													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button></td><?php }?>
-													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
-													<td>Bayar  </td>
-													<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													 <td> </td><?php }?>
+													<td></td>
+													<td></td>
+													<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Tambah Stok</button></td><?php }?>
+													
 												</tr>
 											</form>
-											<tr>
 
-												<td>Kembali</td>
-												<td><input type="text" readonly class="form-control" value="<?php echo $hitung;?>"></td>
-												<td></td>
-												<td>
-													<a href="print_beli.php?nm_member=<?php echo $_SESSION['admin sistem']['nm_member'];?>
-													&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
-													<button class="btn btn-default">
-														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
-													</button></a>
-												</td>
-											<td></td>
-											
-
-											</tr>
 											<tr>
 											
 												<?php if(!empty($_GET['nota'] == 'yes')){?>
 												<div class="alert alert-success">
-													<p>Belanjaan berhasil dibayar !</p>
+													<p>Stok berhasil ditambahkan !</p>
 												</div>
 												<?php }?>
 											

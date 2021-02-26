@@ -38,7 +38,8 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="index.php?page=kategori">Kategori</a></li>
-                          <li><a  href="index.php?page=barang">Barang</a></li>
+                          <li><a  href="index.php?page=barang">Sepatu</a></li>
+                          <li><a  href="index.php?page=ukuran">Ukuran</a></li>
                       </ul>
                   </li>
 
@@ -64,6 +65,7 @@
                       <ul class="sub">
                           <li><a  href="index.php?page=laporan">Laporan Penjualan</a></li>
                           <li><a  href="index.php?page=laporanbeli">Laporan Pembelian</a></li>
+                          <li><a  href="index.php?page=laporanstok">Laporan Stok</a></li>
                       </ul>
                   </li>
                  

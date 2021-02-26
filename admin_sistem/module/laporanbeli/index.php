@@ -92,9 +92,10 @@
 										<th> No</th>
 										<th> ID Sepatu</th>
 										<th> Nama Sepatu</th>
+										<th> Ukuran</th>
 										<th style="width:10%;"> Jumlah</th>
 										<th style="width:20%;"> Total</th>
-										<th> Kasir</th>
+										<th> Nama Supllier</th>
 										<th> Tanggal Input</th>
 									</tr>
 								</thead>
@@ -113,9 +114,10 @@
 										<td><?php echo $no;?></td>
 										<td><?php echo $isi['id_barang'];?></td>
 										<td><?php echo $isi['nama_barang'];?></td>
+										<td><?php echo $isi['ukuran2'];?></td>
 										<td><?php echo $isi['jumlah'];?> </td>
 										<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
-										<td><?php echo $isi['nm_member'];?></td>
+										<td><?php echo $isi['nama_supplier'];?></td>
 										<td><?php echo $isi['tanggal_input'];?></td>
 									</tr>
 									<?php $no++; }?>
@@ -123,7 +125,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total Terjual</td>
+										<th colspan="4">Total Terjual</td>
 										<th><?php echo $jumlah;?></td>
 										<th>Rp.<?php echo number_format($bayar);?>,-</td>
 										<th colspan="2" style="background:#ddd"></th>
@@ -140,9 +142,10 @@
 										<th> No</th>
 										<th> ID Sepatu</th>
 										<th> Nama Sepatu</th>
+										<th> Ukuran</th>
 										<th style="width:10%;"> Jumlah</th>
 										<th style="width:20%;"> Total</th>
-										<th> Kasir</th>
+										<th> Nama Supllier</th>
 										<th> Tanggal Input</th>
 									</tr>
 								</thead>
@@ -161,9 +164,10 @@
 										<td><?php echo $no;?></td>
 										<td><?php echo $isi['id_barang'];?></td>
 										<td><?php echo $isi['nama_barang'];?></td>
+										<td><?php echo $isi['ukuran2'];?></td>
 										<td><?php echo $isi['jumlah'];?> </td>
 										<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
-										<td><?php echo $isi['nm_member'];?></td>
+										<td><?php echo $isi['nama_supplier'];?></td>
 										<td><?php echo $isi['tanggal_input'];?></td>
 									</tr>
 									<?php $no++; }?>
@@ -171,7 +175,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total Terjual</td>
+										<th colspan="4">Total Terjual</td>
 										<th><?php echo $jumlah;?></td>
 										<th>Rp.<?php echo number_format($bayar);?>,-</td>
 										<th colspan="2" style="background:#ddd"></th>

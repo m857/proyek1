@@ -27,6 +27,7 @@
 						<tr>
 							<td>No.</td>
 							<td>Sepatu</td>
+							<td>Ukuran</td>
 							<td>Jumlah</td>
 							<td>Total</td>
 						</tr>
@@ -34,6 +35,7 @@
 						<tr>
 							<td><?php echo $no;?></td>
 							<td><?php echo $isi['nama_barang'];?></td>
+							<td><?php echo $isi['ukuran2'];?></td>
 							<td><?php echo $isi['jumlah'];?></td>
 							<td><?php echo $isi['total'];?></td>
 						</tr>
