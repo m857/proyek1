@@ -14,7 +14,7 @@
 				  <hr>
 				   
 				  <?php 
-						$sql=" select * from barang where stok <= 3";
+						$sql=" select ukuran.*, barang.* from ukuran inner join barang on ukuran.id_barang = barang.id_barang where stok2 <= 3";
 						$row = $config -> prepare($sql);
 						$row -> execute();
 						$r = $row -> fetchAll();
@@ -23,16 +23,18 @@
 					<?php
 							echo "
 							<div class='alert alert-warning'>
-								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								<span class='pull-right'><a href='index.php?page=barang'>Tabel Barang <i class='fa fa-angle-double-right'></i></a></span>
+							<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> / <span style='color:red'> Ukuran ". $q['ukuran2']."</span> yang tersisa sudah kurang dari 3 . silahkan lapor ke pemilik !!
+								
 							</div>
 							";	
 						}
 					?>
 				  <?php $hasil_barang = $lihat -> barang_row();?>
+				  <?php $hasil_supplier = $lihat -> supplier_row();?>
 				  <?php $hasil_kategori = $lihat -> kategori_row();?>
 				  <?php $stok = $lihat -> barang_stok_row();?>
 				  <?php $jual = $lihat -> jual_row();?>
+				  <?php $beli = $lihat -> beli_row();?>
                     <div class="row">
                       <!--STATUS PANELS -->
                       	<div class="col-md-3">
@@ -47,6 +49,8 @@
 									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Sepatu <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
+							  <!-- supplier -->
+                      		
                       	</div><!-- /col-md-3-->
                       <!-- STATUS PANELS -->
                       	<div class="col-md-3">
@@ -58,10 +62,12 @@
 									<center><h1><?php echo $stok['jml'];?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Sepatu  <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=ukuran'>Tabel Ukuran Sepatu  <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
+							  
                       	</div><!-- /col-md-3-->
+						  
                       <!-- STATUS PANELS -->
                       	<div class="col-md-3">
                       		<div class="panel panel-danger">
@@ -72,12 +78,11 @@
 									<center><h1><?php echo $hasil_kategori;?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=kategori'>Tabel Kategori  <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;font-weight:700;"><a href='index.php?page=kategori'>Tabel Kategori <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
-                      	</div><!-- /col-md-3-->
-                      	<div class="col-md-3">
 	                      	</div><!--/grey-panel -->
                       	</div><!-- /col-md-3-->
+                      
 					</div>
 				</div>
            </div><!-- /col-lg-9 END SECTION MIDDLE -->
@@ -100,7 +105,7 @@
 					</div>
 				</div><!-- / calendar -->
 			  </div><!-- /col-lg-3 -->
-		  </div>
+		  </div><! --/row -->
 		 <div class="clearfix" style="padding-top:18%;"></div>
 	  </section>
   </section>

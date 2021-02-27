@@ -6,14 +6,14 @@
       <!--main content start-->
 <?php 
 	$id = $_GET['barang'];
-	$hasil = $lihat -> barang_edit($id);
+	$hasil = $lihat -> ukuran_edit($id);
 ?>
       <section id="main-content">
           <section class="wrapper">
 
               <div class="row">
                   <div class="col-lg-12 main-chart">
-					  	<a href="index.php?page=barang"><button class="btn btn-primary"><i class="fa fa-angle-left"></i> Balik </button></a>
+					  	<a href="index.php?page=ukuran"><button class="btn btn-primary"><i class="fa fa-angle-left"></i> Balik </button></a>
 						<h3>Details Sepatu</h3>
 						<?php if(isset($_GET['success-stok'])){?>
 						<div class="alert alert-success">
@@ -37,10 +37,6 @@
 									<td><?php echo $hasil['id_barang'];?></td>
 								</tr>
 								<tr>
-									<td>Nama Supplier</td>
-									<td><?php echo $hasil['nama_supplier'];?></td>
-								</tr>
-								<tr>
 									<td>Kategori</td>
 									<td><?php echo $hasil['nama_kategori'];?></td>
 								</tr>
@@ -53,17 +49,28 @@
 									<td><?php echo $hasil['merk'];?></td>
 								</tr>
 								<tr>
+									<td>Nama Supplier</td>
+									<td><?php echo $hasil['nama_supplier'];?></td>
+								</tr>
+								<tr>
 									<td>Harga Beli</td>
-									<td>Rp. <?php echo number_format($hasil['harga_beli']);?>,-</td>
+									<td><?php echo $hasil['harga_beli'];?></td>
 								</tr>
 								<tr>
 									<td>Harga Jual</td>
-									<td>Rp. <?php echo number_format($hasil['harga_jual']);?>,-</td>
+									<td><?php echo $hasil['harga_jual'];?></td>
 								</tr>
-								
 								<tr>
 									<td>Satuan Sepatu</td>
 									<td><?php echo $hasil['satuan_barang'];?></td>
+								</tr>
+								<tr>
+									<td>Stok</td>
+									<td><?php echo $hasil['stok2'];?></td>
+								</tr>
+								<tr>
+									<td>Ukuran Sepatu</td>
+									<td><?php echo $hasil['ukuran2'];?></td>
 								</tr>
 								<tr>
 									<td>Tanggal Input</td>
@@ -73,7 +80,7 @@
 									<td>Tanggal Update</td>
 									<td><?php echo $hasil['tgl_update'];?></td>
 								</tr>
-						
+								
 						</table>
 						</div>
 							

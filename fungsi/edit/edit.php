@@ -234,15 +234,15 @@ if(!empty($_SESSION['admin sistem'])){
 
 	if(!empty($_GET['jual'])){
 		$id = htmlentities($_POST['id']);
-		$id_barang = htmlentities($_POST['id_barang']);
+		$id_ukuran = htmlentities($_POST['id_ukuran']);
 		$jumlah = htmlentities($_POST['jumlah']);
 		
-		$sql_tampil = "select *from barang where barang.id_barang=?";
+		$sql_tampil = "select ukuran.*, barang.* from ukuran inner join barang on ukuran.id_barang = barang.id_barang where ukuran.id_ukuran=?";
 		$row_tampil = $config -> prepare($sql_tampil);
-		$row_tampil -> execute(array($id_barang));
+		$row_tampil -> execute(array($id_ukuran));
 		$hasil = $row_tampil -> fetch();
 
-		if($hasil['stok'] > $jumlah)
+		if($hasil['stok2'] > $jumlah)
 		{
 			$jual = $hasil['harga_jual'];
 			$total = $jual * $jumlah;
@@ -541,15 +541,15 @@ else if(!empty($_SESSION['kasir'])){
 
 	if(!empty($_GET['jual'])){
 		$id = htmlentities($_POST['id']);
-		$id_barang = htmlentities($_POST['id_barang']);
+		$id_ukuran = htmlentities($_POST['id_ukuran']);
 		$jumlah = htmlentities($_POST['jumlah']);
 		
-		$sql_tampil = "select *from barang where barang.id_barang=?";
+		$sql_tampil = "select ukuran.*, barang.* from ukuran inner join barang on ukuran.id_barang = barang.id_barang where ukuran.id_ukuran=?";
 		$row_tampil = $config -> prepare($sql_tampil);
-		$row_tampil -> execute(array($id_barang));
+		$row_tampil -> execute(array($id_ukuran));
 		$hasil = $row_tampil -> fetch();
 
-		if($hasil['stok'] > $jumlah)
+		if($hasil['stok2'] > $jumlah)
 		{
 			$jual = $hasil['harga_jual'];
 			$total = $jual * $jumlah;
@@ -574,9 +574,12 @@ else if(!empty($_SESSION['kasir'])){
 		{
 
 		}else{
-			$sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori
-					from barang inner join kategori on barang.id_kategori = kategori.id_kategori
-					where barang.id_barang like '%$cari%' or barang.nama_barang like '%$cari%' or barang.merk like '%$cari%'";
+			$sql = "select barang.*, ukuran.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+					from ukuran inner join barang on ukuran.id_barang = barang.id_barang
+					inner join kategori on barang.id_kategori = kategori.id_kategori 
+					inner join supplier on barang.id_supplier = supplier.id_supplier 
+					where barang.id_barang like '%$cari%' or barang.nama_barang like '%$cari%' or barang.merk like '%$cari%' or ukuran.ukuran2 like '%$cari%'
+					order by ukuran.id_barang";
 			$row = $config -> prepare($sql);
 			$row -> execute();
 			$hasil1= $row -> fetchAll();
@@ -596,11 +599,11 @@ else if(!empty($_SESSION['kasir'])){
 				<td><?php echo $hasil['id_barang'];?></td>
 				<td><?php echo $hasil['nama_barang'];?></td>
 				<td><?php echo $hasil['merk'];?></td>
-				<td><?php echo $hasil['stok'];?></td>
-				<td><?php echo $hasil['ukuran'];?></td>
+				<td><?php echo $hasil['stok2'];?></td>
+				<td><?php echo $hasil['ukuran2'];?></td>
 				<td><?php echo $hasil['harga_jual'];?></td>
 				<td>
-				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&id_kasir=<?php echo $_SESSION['kasir']['id_member'];?>&hrg=<?php echo $hasil['harga_jual'];?>" 
+				<a href="fungsi/tambah/tambah.php?jual=jual&id=<?php echo $hasil['id_barang'];?>&idu=<?php echo $hasil['id_ukuran'];?>&id_kasir=<?php echo $_SESSION['kasir']['id_member'];?>&hrg=<?php echo $hasil['harga_jual'];?>" 
 					class="btn btn-success">
 					<i class="fa fa-shopping-cart"></i></a></td>
 			</tr>

@@ -62,6 +62,18 @@
 				$hasil = $row -> fetchAll();
 				return $hasil;
 			}
+	
+			function laporan_ukuran(){
+				$sql = "select barang.*, ukuran.*, kategori.id_kategori, kategori.nama_kategori, supplier.id_supplier, supplier.nama_supplier
+						from ukuran inner join barang on ukuran.id_barang = barang.id_barang
+						inner join kategori on barang.id_kategori = kategori.id_kategori 
+						inner join supplier on barang.id_supplier = supplier.id_supplier
+						ORDER BY barang.id_barang ASC";
+				$row = $this-> db -> prepare($sql);
+				$row -> execute();
+				$hasil = $row -> fetchAll();
+				return $hasil;
+			}
 			
 			function supplier(){
 				$sql = "SELECT * FROM supplier";
@@ -177,7 +189,7 @@
 			}
 
 			function barang_stok_row(){
-				$sql ="SELECT SUM(stok) as jml FROM barang";
+				$sql ="SELECT SUM(stok2) as jml FROM ukuran";
 				$row = $this-> db -> prepare($sql);
 				$row -> execute();
 				$hasil = $row -> fetch();

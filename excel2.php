@@ -29,7 +29,7 @@
                     <th> Ukuran</th>
                     <th style="width:10%;"> Jumlah</th>
                     <th style="width:20%;"> Total</th>
-                    <th> Kasir</th>
+                    <th> Nama Supllier</th>
                     <th> Tanggal Input</th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                     $no=1; 
                     $jumlah = 0;
                     $bayar = 0;
-                    $hasil = $lihat -> periode_jual($periode);
+                    $hasil = $lihat -> periode_beli($periode);
                     foreach($hasil as $isi){
                         $bayar += $isi['total'];
                         $jumlah += $isi['jumlah'];
@@ -51,7 +51,7 @@
                     <td><?php echo $isi['ukuran2'];?></td>
                     <td><?php echo $isi['jumlah'];?> </td>
                     <td><?php echo $isi['total'];?></td>
-                    <td><?php echo $isi['nm_member'];?></td>
+                    <td><?php echo $isi['nama_supplier'];?></td>
                     <td><?php echo $isi['tanggal_input'];?></td>
                 </tr>
                 <?php $no++; }?>
@@ -76,12 +76,12 @@
                     <th> Ukuran</th>
                     <th style="width:10%;"> Jumlah</th>
                     <th style="width:20%;"> Total</th>
-                    <th> Kasir</th>
+                    <th> Nama Supllier</th>
                     <th> Tanggal Input</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $no=1; $hasil = $lihat -> jual();?>
+                <?php $no=1; $hasil = $lihat -> beli();?>
                 <?php 
                     $bayar = 0;
                     $jumlah = 0;
@@ -96,7 +96,7 @@
                     <td><?php echo $isi['ukuran2'];?></td>
                     <td><?php echo $isi['jumlah'];?> </td>
                     <td><?php echo $isi['total'];?></td>
-                    <td><?php echo $isi['nm_member'];?></td>
+                    <td><?php echo $isi['nama_supplier'];?></td>
                     <td><?php echo $isi['tanggal_input'];?></td>
                 </tr>
                 <?php $no++; }?>

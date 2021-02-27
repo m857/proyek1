@@ -6,6 +6,7 @@
       <!--main content start-->
 <?php 
 	$id = $_GET['barang'];
+	
 	$hasil = $lihat -> barang_edit($id);
 ?>
       <section id="main-content">
@@ -25,6 +26,7 @@
 							<p>Hapus Data Berhasil !</p>
 						</div>
 						<?php }?>
+						
 						<table class="table table-striped">
 							<form action="fungsi/edit/edit.php?barang=edit" method="POST">
 								<tr>
@@ -69,8 +71,24 @@
 								</tr>
 								<tr>
 									<td>Harga Jual</td>
-									<td><input type="number" class="form-control" value="<?php echo $hasil['harga_jual'];?>" name="jual"></td>
+									<td><input type="number" readonly class="form-control" value="<?php echo $hasil['harga_jual'];?>"></td>
 								</tr>
+								<tr>
+									<td>Ubah Keuntungan</td>
+									<td>
+									<select name="untung" class="form-control" required>
+									<?php if($hasil['untung'] == "5"){?>
+									<option value="5">Keuntungan 5%</option>
+									<?php }elseif($hasil['untung'] == "10"){
+									echo '<option value="10">Keuntungan 10%</option>';
+									}elseif($hasil['untung'] == "15"){
+										echo '<option value="15">Keuntungan 15%</option>';}?>
+									<option value="5">Keuntungan 5%</option>
+									<option value="10">Keuntungan 10%</option>
+									<option value="15">Keuntungan 15%</option>
+									</select>
+									</td>
+									</tr>
 								<tr>
 									<td>Satuan Sepatu</td>
 									<td>
@@ -81,14 +99,7 @@
 										</select>
 									</td>
 								</tr>
-								<tr>
-									<td>Stok</td>
-									<td><input type="number" class="form-control" value="<?php echo $hasil['stok'];?>" name="stok"></td>
-								</tr>
-								<tr>
-									<td>Ukuran Sepatu</td>
-									<td><input type="number" class="form-control" value="<?php echo $hasil['ukuran'];?>" name="ukuran"></td>
-								</tr>
+								
 								<tr>
 									<td>Tanggal Update</td>
 									<td><input type="text" readonly="readonly" class="form-control" value="<?php echo  date("j F Y, G:i");?>" name="tgl"></td>
@@ -99,6 +110,7 @@
 								</tr>
 							</form>
 						</table>
+						<?= $stok_kel?>
 						<div class="clearfix" style="padding-top:16%;"></div>
 				  </div>
               </div>

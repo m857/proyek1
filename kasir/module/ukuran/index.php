@@ -9,10 +9,24 @@
 
               <div class="row">
                   <div class="col-lg-12 main-chart">
-						<h3>Data Laporan Stok</h3>
-						<br><br>
-						<a href="print_stok.php" class="btn btn-info"><i class="fa fa-download" ></i>
-										Cetak</a>
+						<h3>Data Ukuran Sepatu</h3>
+						<br/>
+						<?php if(isset($_GET['success-stok'])){?>
+						<div class="alert alert-success">
+							<p>Tambah Stok Berhasil !</p>
+						</div>
+						<?php }?>
+						<?php if(isset($_GET['success'])){?>
+						<div class="alert alert-success">
+							<p>Tambah Data Berhasil !</p>
+						</div>
+						<?php }?>
+						<?php if(isset($_GET['remove'])){?>
+						<div class="alert alert-danger">
+							<p>Hapus Data Berhasil !</p>
+						</div>
+						<?php }?>
+						
 						<?php 
 							$sql1=" select ukuran.*, barang.nama_barang from ukuran inner join barang on ukuran.id_barang = barang.id_barang where stok2 <= 3";
 							$row1 = $config -> prepare($sql1);
@@ -23,7 +37,7 @@
 						<?php
 								echo "
 								<div class='alert alert-warning'>
-								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> / <span style='color:red'> Ukuran ". $q['ukuran2']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
+								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> / <span style='color:red'> Ukuran ". $q['ukuran2']."</span> yang tersisa sudah kurang dari 3 . silahkan lapor ke pemilik !!
 								
 							</div>
 								";	
@@ -31,6 +45,7 @@
 						
 						?>
 					
+
 						<!-- Trigger the modal with a button -->
 						
 						
@@ -49,7 +64,7 @@
 										<th>Stok</th>
 										<th>Harga Beli</th>
 										<th>Harga Jual</th>
-										
+										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -77,7 +92,22 @@
 										</td>
 										<td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
 										<td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
-										
+										<td>
+											
+											
+											<?php if($isi['stok2'] <=  '3'){?>
+											<center>
+											<p>Silahkan Laporan kepada Pemilik, <br> agar melakukan restok</p>
+											<a href="index.php?page=ukuran/details&barang=<?php echo $isi['id_ukuran'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
+											</center>
+											
+											<?php }else{?>
+											<center>
+											<a href="index.php?page=ukuran/details&barang=<?php echo $isi['id_ukuran'];?>"><button class="btn btn-primary btn-xs">Details</button></a>
+											</center>
+											<?php }?>
+											
+											
 									</tr>
 								<?php 
 										$no++; 
@@ -89,11 +119,11 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total </td>
+										<th colspan="4">Total </td>
 										<th><?php echo $totalStok;?></td>
 										<th>Rp.<?php echo number_format($totalBeli);?>,-</td>
 										<th>Rp.<?php echo number_format($totalJual);?>,-</td>
-										<th colspan="1" style="background:#ddd"></th>
+										<th colspan="2" style="background:#ddd"></th>
 									</tr>
 								</tfoot>
 							</table>

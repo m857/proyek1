@@ -113,7 +113,7 @@
 											<a href="index.php?page=ukuran/details&barang=<?php echo $isi['id_ukuran'];?>"><button class="btn btn-success btn-xs">Details</button></a>
 											<a href="index.php?page=ukuran/edit&barang=<?php echo $isi['id_ukuran'];?>"><button class="btn btn-warning btn-xs">Edit</button></a>
 											<a href="fungsi/hapus/hapus.php?ukuran=hapus&id=<?php echo $isi['id_ukuran'];?>" onclick="javascript:return confirm('Hapus Data Ukuran Sepatu?');"><button class="btn btn-danger btn-xs">Hapus</button></a>
-											<a href='fungsi/tambah/tambah.php?beli=beli&id=<?php echo $isi['id_ukuran'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $isi['id_supplier']?>&hrg=<?php echo $isi['harga_beli']?>'><button class="btn btn-primary btn-xs">Restok</button></i></a>
+											<a href='fungsi/tambah/tambah.php?beli=beli&id=<?php echo $isi['id_barang'];?>&id_kasir=<?php echo $_SESSION['admin sistem']['id_member'];?>&ids=<?php echo $isi['id_supplier']?>&idu=<?php echo $isi['id_ukuran'];?>&hrg=<?php echo $isi['harga_beli']?>'><button class="btn btn-primary btn-xs">Restok</button></i></a>
 											</center>
 													
 													<!-- <p> Silahkan melakukan pembelian sepatu <br> Pada halaman Transaksi Beli </p> -->

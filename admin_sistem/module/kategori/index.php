@@ -10,6 +10,14 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 						<h3>Data Kategori</h3>
+						<?php
+								echo "
+								<div class='alert alert-warning'>
+									<span class='glyphicon glyphicon-info-sign'></span> Hati Hati dalam <a style='color:red'> Hapus dan Edit Data Kategori</a> karena dapat berpengaruh dalam laporan !!
+								</div>
+								";	
+							
+						?>
 						<br/>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
@@ -57,7 +65,7 @@
 						<table class="table table-bordered" id="example1">
 							<thead>
 								<tr style="background:#DFF0D8;color:#333;">
-									<th>No.</th>
+									<th style="width: 20px;">No.</th>
 									<th>Kategori</th>
 									<th>Tanggal Input</th>
 									<th>Aksi</th>

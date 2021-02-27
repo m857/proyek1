@@ -13,11 +13,7 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 						<h3>Keranjang Penjualan</h3>
-						<?php if(isset($_GET['bayar'])){?>
-						<div class="alert alert-success">
-							<p>Belanjaan berhasil dibayar !</p>
-						</div>
-						<?php }?>
+						
 						<br>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
@@ -74,6 +70,7 @@
 												<tr>
 													<td> No</td>
 													<td> Nama Barang</td>
+													<td> Ukuran</td>
 													<td style="width:10%;"> Jumlah</td>
 													<td style="width:20%;"> Total</td>
 													<td> Kasir</td>
@@ -81,17 +78,18 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php $total_bayar=0; $no=1; $hasil_penjualan = $lihat -> penjualan();?>
-												<?php foreach($hasil_penjualan  as $isi){;?>
+												<?php $nampel="-"; $total_bayar=0; $no=1; $hasil_penjualan = $lihat -> penjualan();?>
 												
+												<?php foreach($hasil_penjualan  as $isi){;?>
 												<tr>
 													<td><?php echo $no;?></td>
 													<td><?php echo $isi['nama_barang'];?></td>
+													<td><?php echo $isi['ukuran2'];?></td>
 													<td>
 														<form method="POST" action="fungsi/edit/edit.php?jual=jual">
 															<input type="number" name="jumlah" value="<?php echo $isi['jumlah'];?>" class="form-control">
 															<input type="hidden" name="id" value="<?php echo $isi['id_penjualan'];?>" class="form-control">
-															<input type="hidden" name="id_barang" value="<?php echo $isi['id_barang'];?>" class="form-control">
+															<input type="hidden" name="id_ukuran" value="<?php echo $isi['id_ukuran'];?>" class="form-control">
 													</td>
 													<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
 													<td><?php echo $isi['nm_member'];?></td>
@@ -121,33 +119,34 @@
 													if($bayar >= $total)
 													{
 														$id_barang = $_POST['id_barang'];
-														$nampel = $_POST['nampel'];
 														$id_member = $_POST['id_member'];
+														$id_ukuran = $_POST['id_ukuran'];
 														$jumlah = $_POST['jumlah'];
 														$total = $_POST['total1'];
 														$tgl_input = $_POST['tgl_input'];
+														$nampel = $_POST['nampel'];
 														$periode = $_POST['periode'];
 														$jumlah_dipilih = count($id_barang);
 														
 														for($x=0;$x<$jumlah_dipilih;$x++){
 
-															$d = array($id_barang[$x],$id_member[$x],$jumlah[$x],$total[$x],$tgl_input[$x],$periode[$x]);
-															$sql = "INSERT INTO nota (id_barang,id_member,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?)";
+															$d = array($id_barang[$x],$id_member[$x],$id_ukuran[$x],$jumlah[$x],$total[$x],$tgl_input[$x],$periode[$x]);
+															$sql = "INSERT INTO nota (id_barang,id_member,id_ukuran,jumlah,total,tanggal_input,periode) VALUES(?,?,?,?,?,?,?)";
 															$row = $config->prepare($sql);
 															$row->execute($d);
 
 															// ubah stok barang
-															$sql_barang = "SELECT * FROM barang WHERE id_barang = ?";
+															$sql_barang = "SELECT * FROM ukuran WHERE id_ukuran = ?";
 															$row_barang = $config->prepare($sql_barang);
-															$row_barang->execute(array($id_barang[$x]));
+															$row_barang->execute(array($id_ukuran[$x]));
 															$hsl = $row_barang->fetch();
 															
-															$stok = $hsl['stok'];
-															$idb  = $hsl['id_barang'];
+															$stok = $hsl['stok2'];
+															$idb  = $hsl['id_ukuran'];
 
 															$total_stok = $stok - $jumlah[$x];
-															echo $total_stok;
-															$sql_stok = "UPDATE barang SET stok = ? WHERE id_barang = ?";
+															
+															$sql_stok = "UPDATE ukuran SET stok2 = ? WHERE id_ukuran = ?";
 															$row_stok = $config->prepare($sql_stok);
 															$row_stok->execute(array($total_stok, $idb));
 															
@@ -165,15 +164,16 @@
 												<?php foreach($hasil_penjualan as $isi){;?>
 													<input type="hidden" name="id_barang[]" value="<?php echo $isi['id_barang'];?>">
 													<input type="hidden" name="id_member[]" value="<?php echo $isi['id_member'];?>">
+													<input type="hidden" name="id_ukuran[]" value="<?php echo $isi['id_ukuran'];?>">
 													<input type="hidden" name="jumlah[]" value="<?php echo $isi['jumlah'];?>">
 													<input type="hidden" name="total1[]" value="<?php echo $isi['total'];?>">
 													<input type="hidden" name="tgl_input[]" value="<?php echo $isi['tanggal_input'];?>">
 													<input type="hidden" name="periode[]" value="<?php echo date('m-Y');?>">
 												<?php $no++; }?>
-												<tr>
-												<td colspan="1"><b>Nama Pelanggan</b></td>
-												<td colspan="4"><input type="text" class="form-control " required name="nampel" value="<?php echo $nampel;?>"></td>
-												</tr>
+												<!-- <tr>
+												<td colspan="1">Nama Pelanggan</td>
+												<td colspan="4"><input type="text" class="form-control " name="nampel" value="<?php //echo $nampel;?>" ></td>
+												</tr> -->
 												<tr>
 													<td>Total Semua  </td>
 													<td><input type="text" readonly class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>
@@ -184,7 +184,7 @@
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
 													<td>Bayar  </td>
 														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
-													<td> </td><?php }?>
+													<td></td><?php }?></td>
 												</tr>
 											</form>
 											<tr>
@@ -198,7 +198,7 @@
 														<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
 													</button></a>
 												</td>
-											<td></td>
+
 											</tr>
 											<tr>
 											
@@ -210,6 +210,7 @@
 											
 											</tr>
 										</table>
+										
 										<br/>
 										<br/>
 									</div>

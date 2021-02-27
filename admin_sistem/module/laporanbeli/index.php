@@ -11,7 +11,7 @@
                   <div class="col-lg-12 main-chart">
 						<h3>Data Laporan Pembelian
 							<a  style="padding-left:2pc;" href="fungsi/hapus/hapus.php?laporan=jual" onclick="javascript:return confirm('Data Laporan akan di Hapus ?');">
-								<button class="btn btn-danger">RESET</button>
+								<!-- <button class="btn btn-danger">RESET</button> -->
 							</a>
 							<?php if(!empty($_GET['cari'])){
 								echo 'Periode Bulan ke - '.$_POST['bln'].' Tahun '.$_POST['thn'];
@@ -70,10 +70,10 @@
 										<i class="fa fa-refresh"></i> Refresh</a>
 										
 									<?php if(!empty($_GET['cari'])){?>
-										<a href="excel.php?cari=yes&bln=<?=$_POST['bln'];?>&thn=<?=$_POST['thn'];?>" class="btn btn-info"><i class="fa fa-download"></i>
+										<a href="excel2.php?cari=yes&bln=<?=$_POST['bln'];?>&thn=<?=$_POST['thn'];?>" class="btn btn-info"><i class="fa fa-download"></i>
 										Cetak</a>
 									<?php }else{?>
-										<a href="excel.php" class="btn btn-info"><i class="fa fa-download"></i>
+										<a href="excel2.php" class="btn btn-info"><i class="fa fa-download"></i>
 										Cetak</a>
 									<?php }?>
 								</td>

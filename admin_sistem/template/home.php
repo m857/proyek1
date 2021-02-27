@@ -14,7 +14,7 @@
 				  <hr>
 				   
 				  <?php 
-						$sql=" select * from barang where stok <= 3";
+						$sql=" select ukuran.*, barang.* from ukuran inner join barang on ukuran.id_barang = barang.id_barang where stok2 <= 3";
 						$row = $config -> prepare($sql);
 						$row -> execute();
 						$r = $row -> fetchAll();
@@ -23,8 +23,8 @@
 					<?php
 							echo "
 							<div class='alert alert-warning'>
-								<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
-								<span class='pull-right'><a href='fungsi/tambah/tambah.php?beli=beli&id=".$q['id_barang']."&id_kasir=".$_SESSION['admin sistem']['id_member']."&ids=".$q['id_supplier']."'>Transaksi Pembelian <i class='fa fa-angle-double-right'></i></a></span>
+							<span class='glyphicon glyphicon-info-sign'></span> Stok  <a style='color:red'>". $q['nama_barang']."</a>  / <span style='color:red'> ID ". $q['id_barang']."</span> / <span style='color:red'> Ukuran ". $q['ukuran2']."</span> yang tersisa sudah kurang dari 3 . silahkan pesan lagi !!
+								<span class='pull-right'><a href='fungsi/tambah/tambah.php?beli=beli&id=".$q['id_barang']."&idu=".$q['id_ukuran']."&id_kasir=".$_SESSION['admin sistem']['id_member']."&hrg=".$q['harga_beli']."&ids=".$q['id_supplier']."'>Transaksi Pembelian <i class='fa fa-angle-double-right'></i></a></span>
 							</div>
 							";	
 						}
@@ -72,7 +72,7 @@
 									<center><h1><?php echo $stok['jml'];?></h1></center>
 								</div>
 								<div class="panel-footer">
-									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=barang'>Tabel Sepatu  <i class='fa fa-angle-double-right'></i></a></h4>
+									<h4 style="font-size:15px;font-weight:700;"><a href='index.php?page=laporanstok'>Tabel Laporan Stok Sepatu  <i class='fa fa-angle-double-right'></i></a></h4>
 								</div>
 	                      	</div><!--/grey-panel -->
 							  <div class="panel panel-success">

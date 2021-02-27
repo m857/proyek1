@@ -90,6 +90,7 @@
 															<input type="number" name="jumlah" value="<?php echo $isi['jumlah'];?>" class="form-control">
 															<input type="hidden" name="id" value="<?php echo $isi['id_penjualan'];?>" class="form-control">
 															<input type="hidden" name="id_barang" value="<?php echo $isi['id_barang'];?>" class="form-control">
+															<input type="hidden" name="id_ukuran" value="<?php echo $isi['id_ukuran'];?>" class="form-control">
 													</td>
 													<td>Rp.<?php echo number_format($isi['total']);?>,-</td>
 													<td><?php echo $isi['nm_member'];?></td>
@@ -170,10 +171,7 @@
 													<input type="hidden" name="tgl_input[]" value="<?php echo $isi['tanggal_input'];?>">
 													<input type="hidden" name="periode[]" value="<?php echo date('m-Y');?>">
 												<?php $no++; }?>
-												<tr>
-												<td colspan="1">Nama Pelanggan</td>
-												<td colspan="4"><input type="text" class="form-control " name="nampel" value="<?php echo $nampel;?>" ></td>
-												</tr>
+												
 												<tr>
 													<td>Total Semua  </td>
 													<td><input type="text" readonly class="form-control" name="total" value="<?php echo $total_bayar;?>"></td>

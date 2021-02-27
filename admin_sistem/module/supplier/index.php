@@ -10,7 +10,14 @@
               <div class="row">
                   <div class="col-lg-12 main-chart">
 						<h3>Data Suplier</h3>
-
+						<?php
+								echo "
+								<div class='alert alert-warning'>
+									<span class='glyphicon glyphicon-info-sign'></span> Hati Hati dalam <a style='color:red'> Hapus dan Edit Data Supllier </a> karena dapat berpengaruh dalam laporan !!
+								</div>
+								";	
+							
+						?>
 						<?php if(isset($_GET['success'])){?>
 						<div class="alert alert-success">
 							<p>Tambah Data Berhasil !</p>

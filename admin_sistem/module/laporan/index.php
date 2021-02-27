@@ -6,7 +6,10 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-
+		  <?php 
+		  $id = $_SESSION['admin sistem']['id_member'];
+		  $hasil = $lihat -> member_edit($id);
+      ?>
               <div class="row">
                   <div class="col-lg-12 main-chart">
 						<h3>Data Laporan Penjualan
