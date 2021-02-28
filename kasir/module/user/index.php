@@ -5,7 +5,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <?php 
-		  $id = $_SESSION['admin sistem']['id_member'];
+		  $id = $_SESSION['kasir']['id_member'];
 		  $hasil = $lihat -> member_edit($id);
       ?>
       <section id="main-content">

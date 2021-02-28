@@ -149,6 +149,10 @@
 															$sql_stok = "UPDATE ukuran SET stok2 = ? WHERE id_ukuran = ?";
 															$row_stok = $config->prepare($sql_stok);
 															$row_stok->execute(array($total_stok, $idb));
+
+															echo '<div class="alert alert-success">
+																	<p>Belanjaan berhasil dibayar !</p>
+																	</div>';
 															
 														}
 														echo '<script>windows.location="index.php?nm_member=<?php echo $nama;?>
@@ -184,6 +188,8 @@
 													<?php  if(!empty($_GET['nota'] == 'yes')) {?>
 													<td>Bayar  </td>
 														<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
+														<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button></td>
+														
 													<td></td><?php }?></td>
 												</tr>
 											</form>
@@ -202,11 +208,7 @@
 											</tr>
 											<tr>
 											
-												<?php if(!empty($_GET['nota'] == 'yes')){?>
-												<div class="alert alert-success">
-													<p>Belanjaan berhasil dibayar !</p>
-												</div>
-												<?php }?>
+										
 											
 											</tr>
 										</table>

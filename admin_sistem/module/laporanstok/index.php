@@ -89,11 +89,11 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="3">Total </td>
+										<th colspan="4">Total </td>
 										<th><?php echo $totalStok;?></td>
 										<th>Rp.<?php echo number_format($totalBeli);?>,-</td>
 										<th>Rp.<?php echo number_format($totalJual);?>,-</td>
-										<th colspan="1" style="background:#ddd"></th>
+										
 									</tr>
 								</tfoot>
 							</table>
