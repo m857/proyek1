@@ -23,16 +23,7 @@ if(!empty($_SESSION['admin sistem'])||( $_SESSION['kasir'])){
 		$satuan = $_POST['satuan'];
 		$tgl = $_POST['tgl'];
 		
-		if($untung === "5"){
-			$p = $beli* 0.05;
-			$jual = $beli + $p;
-		}elseif($untung === '10'){
-			$p = $beli* 0.1;
-			$jual = $beli + $p;
-		}elseif($untung === '15'){
-			$p = $beli* 0.15;
-			$jual = $beli + $p;
-		}
+		$jual = $untung/100 * $beli + $beli ;
 
 		$data[] = $id;
 		$data[] = $kategori;

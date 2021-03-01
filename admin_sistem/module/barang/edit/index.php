@@ -76,18 +76,9 @@
 								<tr>
 									<td>Ubah Keuntungan</td>
 									<td>
-									<select name="untung" class="form-control" required>
-									<?php if($hasil['untung'] == "5"){?>
-									<option value="5">Keuntungan 5%</option>
-									<?php }elseif($hasil['untung'] == "10"){
-									echo '<option value="10">Keuntungan 10%</option>';
-									}elseif($hasil['untung'] == "15"){
-										echo '<option value="15">Keuntungan 15%</option>';}?>
-									<option value="5">Keuntungan 5%</option>
-									<option value="10">Keuntungan 10%</option>
-									<option value="15">Keuntungan 15%</option>
-									</select>
+									<input type="number" class="form-control" value="<?php echo $hasil['untung'];?>" name="untung">
 									</td>
+									<td>%</td>
 									</tr>
 								<tr>
 									<td>Satuan Sepatu</td>

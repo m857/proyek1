@@ -170,13 +170,9 @@
 											<tr>
 												<td>Harga Jual</td>
 												<td>
-												<select name="untung" class="form-control" required>
-												<option value="#">Pilih Total Keuntungan</option>
-												<option value="5">Keuntungan 5%</option>
-												<option value="10">Keuntungan 10%</option>
-												<option value="15">Keuntungan 15%</option>
-												</select>
+												<input type="number" placeholder="Isi keuntungan yang ingin didapatkan (%)" required class="form-control" name="untung">
 												</td>
+												<td>%</td>
 											</tr>
 											<tr>
 												<td>Satuan Sepatu</td>

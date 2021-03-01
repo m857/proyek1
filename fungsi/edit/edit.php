@@ -72,17 +72,8 @@ if(!empty($_SESSION['admin sistem'])){
 		$ukuran = htmlentities($_POST['ukuran']);
 		$tgl = htmlentities($_POST['tgl']);
 		$ket = htmlentities($_POST['ket']);
-		
-		if($untung === "5"){
-			$p = $beli* 0.05;
-			$jual = $beli + $p;
-		}elseif($untung === '10'){
-			$p = $beli* 0.1;
-			$jual = $beli + $p;
-		}elseif($untung === '15'){
-			$p = $beli* 0.15;
-			$jual = $beli + $p;
-		}
+	
+		$jual = $untung/100 * $beli + $beli ;
 
 		$data[] = $kategori;
 		$data[] = $nama;
